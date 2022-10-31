@@ -1,16 +1,18 @@
-# app
+# App
 
-A new Flutter project.
+Aplicativo para organização de rotina e vida financeira
 
-## Getting Started
+# Mais Sobre o App
 
-This project is a starting point for a Flutter application.
+O foco do aplicativo é você poder criar uma rotina semanal dentro dele, e ter de forma simples como sua rotina está, podendo ver quanto tempo você está gastando por dia em X tarefa, assim quanto tempo livre você tem.
 
-A few resources to get you started if this is your first Flutter project:
+Outro foco dele é também dar uma visibilidade mais simples e objetiva sobre seus gastos financeiros.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+# Tecnologias Utilizadas 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* Flutter
+* Dart
+* Flutter Modular
+* Bloc
+* Sqflite
+* Dartz
