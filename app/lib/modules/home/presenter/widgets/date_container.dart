@@ -1,32 +1,23 @@
-import 'package:app/modules/home/domain/entities/data_dto.dart';
+import 'package:app/modules/home/domain/entities/day_task.dart';
 import 'package:app/themes/colors/app_colors.dart';
 import 'package:app/themes/fonts/app_fonts.dart';
 import 'package:flutter/material.dart';
 
-class DateContainer extends StatefulWidget {
+class DateContainer extends StatelessWidget {
   final Size size;
   final bool isSelected;
-  final DateDto dataDto;
+  final DayTask dataDto;
+  final VoidCallback onTap;
+  final int index;
 
   const DateContainer({
     super.key,
     this.isSelected = false,
     required this.size,
     required this.dataDto,
+    required this.onTap,
+    required this.index,
   });
-
-  @override
-  State<DateContainer> createState() => _DateContainerState();
-}
-
-class _DateContainerState extends State<DateContainer> {
-  late bool isSelected = widget.isSelected;
-
-  @override
-  void initState() {
-    isSelected = widget.isSelected;
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,13 +27,9 @@ class _DateContainerState extends State<DateContainer> {
         horizontal: 8,
       ),
       child: GestureDetector(
-        onTap: () {
-          setState(() {
-            isSelected = !isSelected;
-          });
-        },
+        onTap: onTap,
         child: Container(
-          width: widget.size.width * 0.17,
+          width: size.width * 0.17,
           decoration: BoxDecoration(
             gradient: isSelected
                 ? AppColors.darkOrangeGradient
@@ -59,13 +46,13 @@ class _DateContainerState extends State<DateContainer> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                widget.dataDto.number.toString(),
+                dataDto.dayNumber.toString(),
                 style: AppFonts.homeDataBold(
                     isSelected ? AppColors.white : AppColors.black),
                 textAlign: TextAlign.center,
               ),
               Text(
-                widget.dataDto.day,
+                dataDto.day,
                 style: AppFonts.homeData(
                     isSelected ? AppColors.white : AppColors.black),
                 textAlign: TextAlign.center,

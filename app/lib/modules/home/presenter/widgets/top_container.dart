@@ -1,3 +1,4 @@
+import 'package:app/modules/home/presenter/widgets/colored_container.dart';
 import 'package:app/themes/colors/app_colors.dart';
 import 'package:app/themes/fonts/app_fonts.dart';
 import 'package:flutter/material.dart';
@@ -13,14 +14,11 @@ class TopContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      width: size.width,
+    return ColoredContainer(
+      neonColor: AppColors.primary,
+      gradient: AppColors.primaryGradient,
       height: size.height * 0.2,
-      decoration: BoxDecoration(
-        gradient: AppColors.primaryGradient,
-        borderRadius: BorderRadius.circular(30),
-      ),
+      width: size.width,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,

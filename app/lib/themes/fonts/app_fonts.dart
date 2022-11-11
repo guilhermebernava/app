@@ -17,6 +17,23 @@ class AppFonts {
     fontWeight: FontWeight.bold,
   );
 
+  static final hourTitle = GoogleFonts.lato(
+    fontSize: 16,
+    color: AppColors.black,
+  );
+
+  static final hourText = GoogleFonts.lato(
+    fontSize: 16,
+    color: AppColors.white,
+    fontWeight: FontWeight.w300,
+  );
+
+  static final hourTextBold = GoogleFonts.lato(
+    fontSize: 16,
+    color: AppColors.white,
+    fontWeight: FontWeight.bold,
+  );
+
   static TextStyle homeDataBold(Color color) {
     return GoogleFonts.lato(
       fontSize: 24,

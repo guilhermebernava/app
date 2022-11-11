@@ -1,38 +1,18 @@
-import 'dart:isolate';
-import 'package:app/modules/home/domain/entities/data_dto.dart';
+import 'package:app/modules/home/domain/bloc/day_task_bloc/day_task_states.dart';
+import 'package:app/modules/home/domain/bloc/day_task_bloc/day_task_events.dart';
+import 'package:app/modules/home/domain/bloc/tasks/tasks_events.dart';
+import 'package:app/modules/home/domain/bloc/tasks/tasks_states.dart';
 import 'package:app/modules/home/domain/interfaces/i_home_use_case.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeUseCase implements IHomeUseCase {
   @override
-  Future<List<DateDto>> getDays() async {
-    final port = ReceivePort();
-    await Isolate.spawn<SendPort>(
-      _getDates,
-      port.sendPort,
-      errorsAreFatal: true,
-    );
+  Bloc<DayTaskEvent, DayTaskState> dayTaskBloc;
+  @override
+  Bloc<TaskEvent, TaskState> taskBloc;
 
-    final response = await port.first;
-    port.close();
-
-    return response;
-  }
-
-  List<DateDto> _getDates(SendPort isolatePort) {
-    final dateToday = DateTime.now();
-    final dates = <DateDto>[];
-
-    for (int i = -6; i <= 6; i++) {
-      final date =
-          DateTime(dateToday.year, dateToday.month - 1, dateToday.day + i);
-
-      dates.add(DateDto(
-        day: DateFormat("EEE").format(date),
-        number: date.day,
-      ));
-    }
-
-    Isolate.exit(isolatePort, dates);
-  }
+  HomeUseCase({
+    required this.dayTaskBloc,
+    required this.taskBloc,
+  });
 }

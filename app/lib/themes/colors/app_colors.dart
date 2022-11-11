@@ -39,7 +39,7 @@ class AppColors {
     ],
     center: Alignment.center,
     stops: [
-      0.5,
+      0.8,
       1,
     ],
     radius: 1,
@@ -52,7 +52,7 @@ class AppColors {
     ],
     center: Alignment.center,
     stops: [
-      0.5,
+      0.1,
       1,
     ],
     radius: 1,
@@ -65,7 +65,7 @@ class AppColors {
     ],
     center: Alignment.center,
     stops: [
-      0.5,
+      0.1,
       1,
     ],
     radius: 1,
@@ -78,7 +78,7 @@ class AppColors {
     ],
     center: Alignment.center,
     stops: [
-      0.5,
+      0.1,
       1,
     ],
     radius: 1,
@@ -91,7 +91,7 @@ class AppColors {
     ],
     center: Alignment.center,
     stops: [
-      0.5,
+      0.1,
       1,
     ],
     radius: 1,
