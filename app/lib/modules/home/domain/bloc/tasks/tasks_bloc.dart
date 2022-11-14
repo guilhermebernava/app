@@ -21,7 +21,7 @@ class TasksBloc extends Bloc<TaskEvent, TaskState> {
           emit(TaskError(message: "Error in getting days"));
         }
 
-        await Future.delayed(const Duration(seconds: 1));
+        await Future.delayed(const Duration(seconds: 5));
         final dayTask = result.right().firstWhere(
               (element) => element.dayNumber == event.dayNumber,
               orElse: () => DayTask(tasks: [], day: "invalid", dayNumber: 0),

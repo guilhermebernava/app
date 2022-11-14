@@ -22,33 +22,49 @@ class DateContainerList extends StatefulWidget {
 
 class _DateContainerListState extends State<DateContainerList> {
   int selectedIndex = 0;
+  bool _animate = false;
+
+  @override
+  void initState() {
+    super.initState();
+    //cada item vai demorar 100 milisegundos a mais que o anterior
+    Future.delayed(const Duration(milliseconds: 500), () {
+      setState(() {
+        _animate = true;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: widget.size.height * 0.2,
-      width: widget.size.width,
-      child: ListView.builder(
-        itemCount: widget.dates.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return DateContainer(
-            index: index,
-            onTap: () {
-              widget.homeUseCase.taskBloc.add(
-                GetTasks(dayNumber: widget.dates[index].dayNumber),
-              );
+    return AnimatedOpacity(
+      opacity: _animate ? 1 : 0,
+      duration: const Duration(milliseconds: 1300),
+      child: SizedBox(
+        height: widget.size.height * 0.2,
+        width: widget.size.width,
+        child: ListView.builder(
+          itemCount: widget.dates.length,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return DateContainer(
+              index: index,
+              onTap: () {
+                widget.homeUseCase.taskBloc.add(
+                  GetTasks(dayNumber: widget.dates[index].dayNumber),
+                );
 
-              setState(() {
-                selectedIndex = index;
-              });
-            },
-            size: widget.size,
-            key: ValueKey(widget.dates[index].dayNumber),
-            dataDto: widget.dates[index],
-            isSelected: selectedIndex == index,
-          );
-        },
+                setState(() {
+                  selectedIndex = index;
+                });
+              },
+              size: widget.size,
+              key: ValueKey(widget.dates[index].dayNumber),
+              dataDto: widget.dates[index],
+              isSelected: selectedIndex == index,
+            );
+          },
+        ),
       ),
     );
   }

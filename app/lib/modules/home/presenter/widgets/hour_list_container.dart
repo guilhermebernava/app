@@ -1,7 +1,7 @@
 import 'package:app/modules/home/domain/bloc/tasks/tasks_states.dart';
 import 'package:app/modules/home/domain/interfaces/i_home_use_case.dart';
 import 'package:app/modules/home/presenter/widgets/hour_container.dart';
-import 'package:app/themes/colors/app_colors.dart';
+import 'package:app/modules/home/presenter/widgets/hour_list_container_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,22 +21,18 @@ class HourListContainer extends StatelessWidget {
       bloc: homeUseCase.taskBloc,
       builder: (_, bloc) {
         if (bloc is TasksLoading) {
-          return const Center(
-            child: CircularProgressIndicator(
-              color: AppColors.primary,
-              strokeWidth: 5,
-            ),
-          );
+          return HourListContainerLoading(size: size);
         }
         if (bloc is TaskSuccess) {
           return SizedBox(
-            height: size.height * 0.5,
+            height: size.height * 0.51,
             width: size.width,
             child: ListView.builder(
               itemCount: bloc.tasks.length,
               scrollDirection: Axis.vertical,
               itemBuilder: (context, index) {
                 return HourContainer(
+                  index: index,
                   gradient: bloc.tasks[index].gradient,
                   color: bloc.tasks[index].neonColor,
                   size: size,

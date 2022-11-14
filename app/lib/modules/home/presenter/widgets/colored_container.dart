@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ColoredContainer extends StatelessWidget {
+class ColoredContainer extends StatefulWidget {
   final Widget child;
   final double height;
   final double width;
@@ -19,29 +19,56 @@ class ColoredContainer extends StatelessWidget {
   });
 
   @override
+  State<ColoredContainer> createState() => _ColoredContainerState();
+}
+
+class _ColoredContainerState extends State<ColoredContainer> {
+  bool _animate = false;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(milliseconds: 200), () {
+      setState(() {
+        _animate = true;
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        vertical: 10,
-        horizontal: 20,
+    return AnimatedOpacity(
+      opacity: _animate ? 1.0 : 0.0,
+      duration: const Duration(seconds: 1),
+      child: AnimatedPadding(
+        duration: const Duration(milliseconds: 1000),
+        padding: _animate
+            ? const EdgeInsets.all(4.0)
+            : const EdgeInsets.only(top: 10),
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            vertical: 10,
+            horizontal: 20,
+          ),
+          width: widget.width,
+          height: widget.height,
+          decoration: BoxDecoration(
+            boxShadow: widget.neonColor != null
+                ? [
+                    BoxShadow(
+                      color: widget.neonColor!.withOpacity(0.3),
+                      blurRadius: 45,
+                      spreadRadius: 2,
+                      offset: const Offset(0, 0),
+                    )
+                  ]
+                : null,
+            gradient: widget.gradient,
+            borderRadius: BorderRadius.circular(widget.radius),
+          ),
+          child: widget.child,
+        ),
       ),
-      width: width,
-      height: height,
-      decoration: BoxDecoration(
-        boxShadow: neonColor != null
-            ? [
-                BoxShadow(
-                  color: neonColor!.withOpacity(0.3),
-                  blurRadius: 45,
-                  spreadRadius: 2,
-                  offset: const Offset(0, 0),
-                )
-              ]
-            : null,
-        gradient: gradient,
-        borderRadius: BorderRadius.circular(radius),
-      ),
-      child: child,
     );
   }
 }
