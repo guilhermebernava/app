@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class AppColors {
   static const primary = Color(0xff5f33e0);
   static const lightPrimary = Color(0xffeae4ff);
+  static const bottomBarColor = Color(0xffe9e3fe);
+  static const bottomIconColor = Color(0xffbfb0f3);
 
   static const purple = Color(0xff7e56f4);
   static const rose = Color(0xfff5628e);

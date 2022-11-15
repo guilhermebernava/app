@@ -36,6 +36,11 @@ class _ColoredContainerState extends State<ColoredContainer> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AnimatedOpacity(
       opacity: _animate ? 1.0 : 0.0,
