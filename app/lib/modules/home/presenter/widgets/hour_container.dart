@@ -67,7 +67,7 @@ class _HourContainerState extends State<HourContainer> {
                     radius: 18,
                     gradient: widget.gradient,
                     height: widget.size.height * 0.11,
-                    width: widget.size.width * 0.71,
+                    width: widget.size.width * 0.8,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -76,7 +76,7 @@ class _HourContainerState extends State<HourContainer> {
                           style: AppFonts.hourTextBold,
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 5,
                         ),
                         Text(
                           widget.duration,

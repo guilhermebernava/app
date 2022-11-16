@@ -53,7 +53,7 @@ class _ColoredContainerState extends State<ColoredContainer> {
         child: Container(
           padding: const EdgeInsets.symmetric(
             vertical: 10,
-            horizontal: 20,
+            horizontal: 10,
           ),
           width: widget.width,
           height: widget.height,
@@ -71,7 +71,10 @@ class _ColoredContainerState extends State<ColoredContainer> {
             gradient: widget.gradient,
             borderRadius: BorderRadius.circular(widget.radius),
           ),
-          child: widget.child,
+          child: Padding(
+            padding: const EdgeInsets.all(5),
+            child: widget.child,
+          ),
         ),
       ),
     );

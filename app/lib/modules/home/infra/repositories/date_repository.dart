@@ -51,13 +51,21 @@ class DayTaskRepository implements IDayTaskRepository {
               title: "Teste 1",
               gradient: AppColors.orangeGradient,
               neonColor: AppColors.orange,
+              hoursInDay: date
+                  .add(Duration(hours: i + 2))
+                  .difference(date.add(Duration(hours: i)))
+                  .inHours,
             ),
             DailyTask(
-              endDate: date.add(Duration(hours: i + 4)),
+              endDate: date.add(Duration(hours: i + 7)),
               initialDate: date.add(Duration(hours: i + 2)),
               title: "Teste 2",
               gradient: AppColors.roseGradient,
               neonColor: AppColors.rose,
+              hoursInDay: date
+                  .add(Duration(hours: i + 7))
+                  .difference(date.add(Duration(hours: i + 2)))
+                  .inHours,
             ),
             DailyTask(
               endDate: date.add(Duration(hours: i + 6)),
@@ -65,6 +73,10 @@ class DayTaskRepository implements IDayTaskRepository {
               title: "Teste 3",
               gradient: AppColors.blueGradient,
               neonColor: AppColors.blue,
+              hoursInDay: date
+                  .add(Duration(hours: i + 6))
+                  .difference(date.add(Duration(hours: i + 3)))
+                  .inHours,
             )
           ],
         ),

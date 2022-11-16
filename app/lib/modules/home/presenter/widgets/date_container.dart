@@ -23,13 +23,13 @@ class DateContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        vertical: 15,
+        vertical: 10,
         horizontal: 8,
       ),
       child: GestureDetector(
         onTap: onTap,
         child: Container(
-          width: size.width * 0.17,
+          width: size.width * 0.16,
           decoration: BoxDecoration(
             gradient: isSelected
                 ? AppColors.darkOrangeGradient

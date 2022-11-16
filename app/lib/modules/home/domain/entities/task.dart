@@ -6,6 +6,7 @@ class DailyTask {
   final Color neonColor;
   final Gradient gradient;
   final String title;
+  final num hoursInDay;
 
   DailyTask({
     required this.endDate,
@@ -13,5 +14,6 @@ class DailyTask {
     required this.title,
     required this.gradient,
     required this.neonColor,
+    required this.hoursInDay,
   });
 }

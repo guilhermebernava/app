@@ -36,7 +36,7 @@ class AppFonts {
 
   static TextStyle homeDataBold(Color color) {
     return GoogleFonts.lato(
-      fontSize: 24,
+      fontSize: 20,
       color: color,
       fontWeight: FontWeight.bold,
     );
@@ -44,7 +44,7 @@ class AppFonts {
 
   static TextStyle homeData(Color color) {
     return GoogleFonts.lato(
-      fontSize: 20,
+      fontSize: 18,
       color: color,
       fontWeight: FontWeight.w400,
     );

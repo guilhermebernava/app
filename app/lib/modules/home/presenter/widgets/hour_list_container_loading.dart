@@ -7,15 +7,19 @@ class HourListContainerLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: size.height * 0.51,
-      width: size.width,
-      child: ListView.builder(
-        itemCount: 5,
-        scrollDirection: Axis.vertical,
-        itemBuilder: (context, index) {
-          return HourContainerSkeleton(size: size);
-        },
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: SizedBox(
+        height: size.height * 0.54,
+        width: size.width,
+        child: ListView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: 5,
+          scrollDirection: Axis.vertical,
+          itemBuilder: (context, index) {
+            return HourContainerSkeleton(size: size);
+          },
+        ),
       ),
     );
   }

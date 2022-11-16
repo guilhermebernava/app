@@ -24,26 +24,24 @@ class HourListContainer extends StatelessWidget {
           return HourListContainerLoading(size: size);
         }
         if (bloc is TaskSuccess) {
-          return SizedBox(
-            height: size.height * 0.51,
-            width: size.width,
-            child: ListView.builder(
-              itemCount: bloc.tasks.length,
-              scrollDirection: Axis.vertical,
-              itemBuilder: (context, index) {
-                return HourContainer(
-                  index: index,
-                  gradient: bloc.tasks[index].gradient,
-                  color: bloc.tasks[index].neonColor,
-                  size: size,
-                  hour:
-                      "${bloc.tasks[index].initialDate.hour}:${bloc.tasks[index].initialDate.minute}",
-                  title: bloc.tasks[index].title,
-                  duration:
-                      "${bloc.tasks[index].initialDate.hour}:${bloc.tasks[index].initialDate.minute} - ${bloc.tasks[index].endDate.hour}:${bloc.tasks[index].endDate.minute}",
-                );
-              },
-            ),
+          return ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: bloc.tasks.length,
+            scrollDirection: Axis.vertical,
+            itemBuilder: (context, index) {
+              return HourContainer(
+                index: index,
+                gradient: bloc.tasks[index].gradient,
+                color: bloc.tasks[index].neonColor,
+                size: size,
+                hour:
+                    "${bloc.tasks[index].initialDate.hour}:${bloc.tasks[index].initialDate.minute}",
+                title: bloc.tasks[index].title,
+                duration:
+                    "${bloc.tasks[index].initialDate.hour}:${bloc.tasks[index].initialDate.minute} - ${bloc.tasks[index].endDate.hour}:${bloc.tasks[index].endDate.minute}",
+              );
+            },
           );
         }
 
