@@ -42,7 +42,7 @@ class _HourContainerSkeletonState extends State<HourContainerSkeleton>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 15),
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
       child: AnimatedBuilder(
         animation: _animation,
         builder: (context, child) => Column(

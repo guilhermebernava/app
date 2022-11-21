@@ -48,66 +48,59 @@ class HomePage extends StatelessWidget {
               }
 
               if (bloc is DaysTasks) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 5,
-                  ),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 20,
+                return SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      SizedBox(
+                        width: size.width,
+                        height: size.height * 0.55,
+                        child: SfCircularChart(
+                          title: ChartTitle(text: 'Suas horas de hoje'),
+                          borderWidth: 0,
+                          series: <CircularSeries<DailyTask, String>>[
+                            PieSeries<DailyTask, String>(
+                              dataSource: bloc.dayTasks[1].tasks,
+                              sortingOrder: SortingOrder.descending,
+                              explodeGesture: ActivationMode.singleTap,
+                              selectionBehavior: SelectionBehavior(
+                                enable: true,
+                              ),
+                              radius: "130",
+                              pointColorMapper: (datum, index) =>
+                                  datum.neonColor,
+                              xValueMapper: (datum, index) =>
+                                  "${datum.title} - ${datum.hoursInDay} hour/s",
+                              yValueMapper: (datum, index) => datum.hoursInDay,
+                              dataLabelMapper: (datum, index) =>
+                                  "${datum.title} ${datum.hoursInDay} Horas",
+                              dataLabelSettings: DataLabelSettings(
+                                isVisible: true,
+                                textStyle: AppFonts.basic,
+                                margin: EdgeInsets.zero,
+                                labelPosition: ChartDataLabelPosition.inside,
+                                overflowMode: OverflowMode.trim,
+                              ),
+                            )
+                          ],
                         ),
-                        SizedBox(
-                          width: size.width,
-                          height: size.height * 0.55,
-                          child: SfCircularChart(
-                            title: ChartTitle(text: 'Suas horas de hoje'),
-                            borderWidth: 0,
-                            series: <CircularSeries<DailyTask, String>>[
-                              PieSeries<DailyTask, String>(
-                                dataSource: bloc.dayTasks[1].tasks,
-                                sortingOrder: SortingOrder.descending,
-                                explodeGesture: ActivationMode.singleTap,
-                                selectionBehavior: SelectionBehavior(
-                                  enable: true,
-                                ),
-                                radius: "130",
-                                pointColorMapper: (datum, index) =>
-                                    datum.neonColor,
-                                xValueMapper: (datum, index) =>
-                                    "${datum.title} - ${datum.hoursInDay} hour/s",
-                                yValueMapper: (datum, index) =>
-                                    datum.hoursInDay,
-                                dataLabelMapper: (datum, index) =>
-                                    "${datum.title} ${datum.hoursInDay} Horas",
-                                dataLabelSettings: DataLabelSettings(
-                                  isVisible: true,
-                                  textStyle: AppFonts.basic,
-                                  margin: EdgeInsets.zero,
-                                  labelPosition: ChartDataLabelPosition.inside,
-                                  overflowMode: OverflowMode.trim,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        DateContainerList(
-                          homeUseCase: homeUseCase,
-                          size: size,
-                          dates: bloc.dayTasks,
-                        ),
-                        HourListContainer(
-                          homeUseCase: homeUseCase,
-                          size: size,
-                        ),
-                        SizedBox(
-                          height: size.height * 0.2,
-                        ),
-                      ],
-                    ),
+                      ),
+                      DateContainerList(
+                        homeUseCase: homeUseCase,
+                        size: size,
+                        dates: bloc.dayTasks,
+                      ),
+                      HourListContainer(
+                        homeUseCase: homeUseCase,
+                        size: size,
+                      ),
+                      SizedBox(
+                        height: size.height * 0.2,
+                      ),
+                    ],
                   ),
                 );
               }

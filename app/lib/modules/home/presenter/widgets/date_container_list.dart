@@ -49,6 +49,12 @@ class _DateContainerListState extends State<DateContainerList> {
   }
 
   @override
+  void dispose() {
+    _scrolController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AnimatedOpacity(
       opacity: params.animate ? 1 : 0,

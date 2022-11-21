@@ -16,13 +16,13 @@ class BottomIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       child: GestureDetector(
         onTap: onTap,
         child: Icon(
-          Icons.home,
+          icon,
           color: isSelected ? AppColors.primary : AppColors.bottomIconColor,
-          size: 40,
+          size: 30,
         ),
       ),
     );
