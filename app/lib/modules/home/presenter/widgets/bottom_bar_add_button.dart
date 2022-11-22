@@ -1,3 +1,4 @@
+import 'package:app/modules/home/presenter/widgets/dialog_widgets/dialog_home_menu.dart';
 import 'package:app/themes/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -38,95 +39,16 @@ class _BottomBarAddButtonState extends State<BottomBarAddButton>
 
         if (icon == Icons.close) {
           showDialog(
-              context: context,
-              builder: ((context) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 0),
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: AppColors.orange,
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Padding(
-                              padding: EdgeInsets.all(15.0),
-                              child: Icon(
-                                Icons.add_a_photo,
-                                color: AppColors.white,
-                                size: 30,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 70),
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: AppColors.orange,
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Padding(
-                              padding: EdgeInsets.all(15.0),
-                              child: Icon(
-                                Icons.add_a_photo,
-                                color: AppColors.white,
-                                size: 30,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 0),
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: AppColors.orange,
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Padding(
-                              padding: EdgeInsets.all(15.0),
-                              child: Icon(
-                                Icons.add_a_photo,
-                                color: AppColors.white,
-                                size: 30,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          icon = Icons.add;
-                        });
-                        Modular.to.pop();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 23),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            gradient: AppColors.primaryGradient,
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.all(5.0),
-                            child: Icon(
-                              Icons.close,
-                              size: 62,
-                              color: AppColors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                );
-              }));
+            context: context,
+            builder: (_) => DialogHomeMenu(
+              onTap: () {
+                setState(() {
+                  icon = Icons.add;
+                });
+                Modular.to.pop();
+              },
+            ),
+          );
         }
       },
       child: Container(
