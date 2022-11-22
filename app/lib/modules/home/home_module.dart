@@ -1,6 +1,8 @@
+import 'package:app/modules/create_daily_task/create_daily_task_module.dart';
 import 'package:app/modules/home/domain/bloc/bottom_bar/bottom_bar_bloc.dart';
 import 'package:app/modules/home/domain/bloc/day_task_bloc/day_task_bloc.dart';
 import 'package:app/modules/home/domain/bloc/tasks/tasks_bloc.dart';
+import 'package:app/modules/home/domain/dtos/dialog_home_dto.dart';
 import 'package:app/modules/home/domain/use_cases/bottom_bar_usecase.dart';
 import 'package:app/modules/home/domain/use_cases/home_use_case.dart';
 import 'package:app/modules/home/infra/repositories/date_repository.dart';
@@ -38,6 +40,9 @@ class HomeModule extends Module {
               taskBloc: Modular.get<TasksBloc>(),
             ),
             bottomBarUsecase: BottomBarUsecase(
+              dialogHomeDto: DialogHomeDto(
+                createDailyTaskRoute: CreateDailyTaskModule.moduleRoute,
+              ),
               bottomBloc: Modular.get<BottomBarBloc>(),
             ),
           ),

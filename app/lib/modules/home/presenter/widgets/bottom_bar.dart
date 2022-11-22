@@ -87,9 +87,11 @@ class BottomBar extends StatelessWidget {
                 }),
           ),
         ),
-        const Align(
-          alignment: Alignment(0, 0.925),
-          child: BottomBarAddButton(),
+        Align(
+          alignment: const Alignment(0, 0.925),
+          child: BottomBarAddButton(
+            params: bottomBarUsecase.dialogHomeDto,
+          ),
         ),
       ],
     );

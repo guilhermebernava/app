@@ -1,3 +1,4 @@
+import 'package:app/modules/create_daily_task/create_daily_task_module.dart';
 import 'package:app/modules/home/home_module.dart';
 import 'package:app/modules/splash/domain/use_cases/splash_use_case.dart';
 import 'package:app/modules/splash/presenter/splash_page.dart';
@@ -19,6 +20,11 @@ class AppModule extends Module {
         ModuleRoute(
           HomeModule.moduleRoute,
           module: HomeModule(),
+          transition: TransitionType.fadeIn,
+        ),
+        ModuleRoute(
+          CreateDailyTaskModule.moduleRoute,
+          module: CreateDailyTaskModule(),
           transition: TransitionType.fadeIn,
         )
       ];

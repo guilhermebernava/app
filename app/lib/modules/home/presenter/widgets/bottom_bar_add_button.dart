@@ -1,10 +1,17 @@
+import 'package:app/modules/home/domain/dtos/dialog_home_dto.dart';
 import 'package:app/modules/home/presenter/widgets/dialog_widgets/dialog_home_menu.dart';
 import 'package:app/themes/colors/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class BottomBarAddButton extends StatefulWidget {
-  const BottomBarAddButton({super.key});
+  final DialogHomeDto params;
+
+  const BottomBarAddButton({
+    super.key,
+    required this.params,
+  });
 
   @override
   State<BottomBarAddButton> createState() => _BottomBarAddButtonState();
@@ -33,6 +40,7 @@ class _BottomBarAddButtonState extends State<BottomBarAddButton>
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        HapticFeedback.mediumImpact;
         setState(() {
           icon = Icons.close;
         });
@@ -41,6 +49,7 @@ class _BottomBarAddButtonState extends State<BottomBarAddButton>
           showDialog(
             context: context,
             builder: (_) => DialogHomeMenu(
+              params: widget.params,
               onTap: () {
                 setState(() {
                   icon = Icons.add;

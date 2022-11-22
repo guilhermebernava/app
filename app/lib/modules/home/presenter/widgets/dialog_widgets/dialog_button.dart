@@ -1,5 +1,6 @@
 import 'package:app/themes/colors/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class DialogButton extends StatelessWidget {
   final IconData icon;
@@ -11,7 +12,7 @@ class DialogButton extends StatelessWidget {
     super.key,
     required this.icon,
     required this.onTap,
-    this.backgroundColor = AppColors.orange,
+    this.backgroundColor = AppColors.blue,
     this.padding = const EdgeInsets.only(bottom: 70),
   });
 
@@ -20,7 +21,10 @@ class DialogButton extends StatelessWidget {
     return Padding(
       padding: padding,
       child: GestureDetector(
-        onTap: onTap,
+        onTap: () {
+          HapticFeedback.mediumImpact;
+          onTap();
+        },
         child: Container(
           decoration: BoxDecoration(
             color: backgroundColor,

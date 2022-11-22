@@ -1,12 +1,17 @@
+import 'package:app/modules/home/domain/dtos/dialog_home_dto.dart';
 import 'package:app/modules/home/presenter/widgets/dialog_widgets/dialog_button.dart';
 import 'package:app/modules/home/presenter/widgets/dialog_widgets/dialog_close_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class DialogHomeMenu extends StatelessWidget {
   final VoidCallback onTap;
+  final DialogHomeDto params;
+
   const DialogHomeMenu({
     super.key,
     required this.onTap,
+    required this.params,
   });
 
   @override
@@ -23,8 +28,11 @@ class DialogHomeMenu extends StatelessWidget {
               padding: EdgeInsets.zero,
             ),
             DialogButton(
-              onTap: () {},
-              icon: Icons.abc,
+              onTap: () {
+                Modular.to.pop();
+                Modular.to.navigate(params.createDailyTaskRoute);
+              },
+              icon: Icons.calendar_month_outlined,
             ),
             DialogButton(
               padding: EdgeInsets.zero,
