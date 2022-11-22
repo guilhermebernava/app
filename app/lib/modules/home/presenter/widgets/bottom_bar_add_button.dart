@@ -41,8 +41,64 @@ class _BottomBarAddButtonState extends State<BottomBarAddButton>
               context: context,
               builder: ((context) {
                 return Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 0),
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              color: AppColors.orange,
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(15.0),
+                              child: Icon(
+                                Icons.add_a_photo,
+                                color: AppColors.white,
+                                size: 30,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 70),
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              color: AppColors.orange,
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(15.0),
+                              child: Icon(
+                                Icons.add_a_photo,
+                                color: AppColors.white,
+                                size: 30,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 0),
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              color: AppColors.orange,
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(15.0),
+                              child: Icon(
+                                Icons.add_a_photo,
+                                color: AppColors.white,
+                                size: 30,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -50,10 +106,22 @@ class _BottomBarAddButtonState extends State<BottomBarAddButton>
                         });
                         Modular.to.pop();
                       },
-                      child: const Icon(
-                        Icons.add,
-                        size: 60,
-                        color: AppColors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 23),
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            gradient: AppColors.primaryGradient,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.all(5.0),
+                            child: Icon(
+                              Icons.close,
+                              size: 62,
+                              color: AppColors.white,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ],
