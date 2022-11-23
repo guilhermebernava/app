@@ -7,7 +7,7 @@ class BottomBarBloc extends Bloc<BottomBarEvent, BottomBarState> {
 
   int get index => _index;
 
-  BottomBarBloc() : super(BottomBarSuccess(index: -1)) {
+  BottomBarBloc() : super(BottomBarSuccess(index: 0)) {
     on<ChangeIndex>((event, emit) async {
       if (event.index < 0) {
         emit(BottomBarError(message: "Value cannot be less than 0"));

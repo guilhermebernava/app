@@ -50,7 +50,9 @@ class BottomBar extends StatelessWidget {
                           isSelected: bloc.index == 0,
                           onTap: () {
                             bottomBarUsecase.validateSelectedButton(
-                                bloc.index, 0);
+                              bloc.index,
+                              0,
+                            );
                           },
                         ),
                         BottomIconButton(
@@ -58,7 +60,9 @@ class BottomBar extends StatelessWidget {
                           isSelected: bloc.index == 1,
                           onTap: () {
                             bottomBarUsecase.validateSelectedButton(
-                                bloc.index, 1);
+                              bloc.index,
+                              1,
+                            );
                           },
                         ),
                         SizedBox(
@@ -69,7 +73,9 @@ class BottomBar extends StatelessWidget {
                           isSelected: bloc.index == 2,
                           onTap: () {
                             bottomBarUsecase.validateSelectedButton(
-                                bloc.index, 2);
+                              bloc.index,
+                              2,
+                            );
                           },
                         ),
                         BottomIconButton(
@@ -77,7 +83,9 @@ class BottomBar extends StatelessWidget {
                           isSelected: bloc.index == 3,
                           onTap: () {
                             bottomBarUsecase.validateSelectedButton(
-                                bloc.index, 3);
+                              bloc.index,
+                              3,
+                            );
                           },
                         ),
                       ],

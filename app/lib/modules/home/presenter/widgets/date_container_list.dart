@@ -1,6 +1,6 @@
 import 'package:app/modules/home/domain/bloc/tasks/tasks_events.dart';
 import 'package:app/modules/home/domain/dtos/date_container_list_dto.dart';
-import 'package:app/modules/home/domain/entities/day_task.dart';
+import 'package:app/core/domain/entities/day_task.dart';
 import 'package:app/modules/home/domain/interfaces/i_home_use_case.dart';
 import 'package:app/modules/home/presenter/widgets/date_container.dart';
 import 'package:flutter/material.dart';

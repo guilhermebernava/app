@@ -29,8 +29,8 @@ class DialogHomeMenu extends StatelessWidget {
             ),
             DialogButton(
               onTap: () {
-                Modular.to.pop();
-                Modular.to.navigate(params.createDailyTaskRoute);
+                onTap();
+                Modular.to.pushNamed(params.createDailyTaskRoute);
               },
               icon: Icons.calendar_month_outlined,
             ),

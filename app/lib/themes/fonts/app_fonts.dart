@@ -34,6 +34,27 @@ class AppFonts {
     fontWeight: FontWeight.bold,
   );
 
+  static final textFormTitle = GoogleFonts.lato(
+    fontSize: 20,
+    color: AppColors.black,
+    fontWeight: FontWeight.bold,
+  );
+
+  static final textFormText = GoogleFonts.lato(
+    fontSize: 18,
+    color: AppColors.black,
+  );
+
+  static final textFormHint = GoogleFonts.lato(
+    fontSize: 18,
+    color: AppColors.lightGrey,
+  );
+
+  static final textFormError = GoogleFonts.lato(
+    fontSize: 18,
+    color: Colors.red,
+  );
+
   static TextStyle homeDataBold(Color color) {
     return GoogleFonts.lato(
       fontSize: 20,

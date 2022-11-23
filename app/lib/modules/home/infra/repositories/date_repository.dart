@@ -1,6 +1,6 @@
 import 'dart:isolate';
-import 'package:app/modules/home/domain/entities/day_task.dart';
-import 'package:app/modules/home/domain/entities/task.dart';
+import 'package:app/core/domain/entities/day_task.dart';
+import 'package:app/core/domain/entities/daily_task.dart';
 import 'package:app/modules/home/domain/errors/day_task_exception.dart';
 import 'package:app/modules/home/domain/interfaces/repositories/i_day_task_repository.dart';
 import 'package:app/themes/colors/app_colors.dart';

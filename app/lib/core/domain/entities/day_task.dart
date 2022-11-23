@@ -1,4 +1,4 @@
-import 'package:app/modules/home/domain/entities/task.dart';
+import 'package:app/core/domain/entities/daily_task.dart';
 
 class DayTask {
   final String day;

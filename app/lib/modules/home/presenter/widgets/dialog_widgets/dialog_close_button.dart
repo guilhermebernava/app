@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class DialogCloseButton extends StatelessWidget {
   final VoidCallback onTap;
+
   const DialogCloseButton({
     super.key,
     required this.onTap,

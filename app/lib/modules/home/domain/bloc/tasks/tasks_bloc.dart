@@ -1,7 +1,7 @@
 import 'package:app/core/extensions/dartz_extensions.dart';
 import 'package:app/modules/home/domain/bloc/tasks/tasks_events.dart';
 import 'package:app/modules/home/domain/bloc/tasks/tasks_states.dart';
-import 'package:app/modules/home/domain/entities/day_task.dart';
+import 'package:app/core/domain/entities/day_task.dart';
 import 'package:app/modules/home/domain/interfaces/repositories/i_day_task_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

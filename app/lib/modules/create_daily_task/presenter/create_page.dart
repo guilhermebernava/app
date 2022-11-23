@@ -1,5 +1,7 @@
-import 'package:app/themes/colors/app_colors.dart';
+import 'package:app/core/presenters/widgets/core_back_button.dart';
+import 'package:app/core/presenters/widgets/core_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class CreatePage extends StatelessWidget {
   const CreatePage({super.key});
@@ -8,11 +10,26 @@ class CreatePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Create DailyTask",
+        centerTitle: true,
+        elevation: 0,
+        leading: CoreBackButton(
+          onTap: () => Modular.to.pop(),
         ),
       ),
-      backgroundColor: AppColors.white,
+      body: Form(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15,
+          ),
+          child: Column(
+            children: const [
+              CoreTextFormField(
+                label: "Título:",
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

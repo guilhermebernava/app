@@ -2,7 +2,7 @@ import 'package:app/modules/home/domain/bloc/day_task_bloc/day_task_bloc.dart';
 import 'package:app/modules/home/domain/bloc/day_task_bloc/day_task_events.dart';
 import 'package:app/modules/home/domain/bloc/day_task_bloc/day_task_states.dart';
 import 'package:app/modules/home/domain/bloc/tasks/tasks_bloc.dart';
-import 'package:app/modules/home/domain/entities/day_task.dart';
+import 'package:app/core/domain/entities/day_task.dart';
 import 'package:app/modules/home/domain/errors/day_task_exception.dart';
 import 'package:app/modules/home/domain/interfaces/repositories/i_day_task_repository.dart';
 import 'package:bloc_test/bloc_test.dart';
