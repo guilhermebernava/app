@@ -1,4 +1,3 @@
-import 'package:app/core/domain/entities/daily_task.dart';
 import 'package:app/core/domain/entities/day_task.dart';
 
 class DaysTasksDto {

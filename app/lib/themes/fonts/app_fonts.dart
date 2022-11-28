@@ -18,36 +18,31 @@ class AppFonts {
   );
 
   static final hourTitle = GoogleFonts.lato(
-    fontSize: 16,
-    color: AppColors.white,
-  );
-
-  static final hourText = GoogleFonts.lato(
-    fontSize: 16,
-    color: AppColors.white,
-    fontWeight: FontWeight.w300,
-  );
-
-  static final hourTextBold = GoogleFonts.lato(
-    fontSize: 16,
+    fontSize: 20,
     color: AppColors.white,
     fontWeight: FontWeight.bold,
   );
 
+  static final hourText = GoogleFonts.lato(
+    fontSize: 20,
+    color: AppColors.white,
+    fontWeight: FontWeight.w400,
+  );
+
   static final textFormTitle = GoogleFonts.lato(
     fontSize: 20,
-    color: AppColors.black,
+    color: AppColors.white,
     fontWeight: FontWeight.bold,
   );
 
   static final textFormText = GoogleFonts.lato(
     fontSize: 18,
-    color: AppColors.black,
+    color: AppColors.white,
   );
 
   static final textFormHint = GoogleFonts.lato(
     fontSize: 18,
-    color: AppColors.black.withOpacity(0.8),
+    color: AppColors.white.withOpacity(0.8),
   );
 
   static final textFormError = GoogleFonts.lato(

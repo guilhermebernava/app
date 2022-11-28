@@ -1,21 +1,24 @@
+import 'package:app/core/domain/enums/daily_task_type.dart';
+import 'package:app/modules/home/infra/services/get_color.dart';
+import 'package:app/themes/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class ColoredContainer extends StatefulWidget {
   final Widget child;
   final double height;
   final double width;
-  final Gradient gradient;
+  final Color color;
   final double radius;
-  final Color? neonColor;
+  final DailyTaskType? type;
 
   const ColoredContainer({
     super.key,
     required this.child,
     required this.height,
-    required this.gradient,
+    required this.color,
     required this.width,
+    this.type,
     this.radius = 30,
-    this.neonColor,
   });
 
   @override
@@ -58,17 +61,22 @@ class _ColoredContainerState extends State<ColoredContainer> {
           width: widget.width,
           height: widget.height,
           decoration: BoxDecoration(
-            boxShadow: widget.neonColor != null
+            boxShadow: widget.type != null
                 ? [
                     BoxShadow(
-                      color: widget.neonColor!.withOpacity(0.05),
-                      blurRadius: 45,
-                      spreadRadius: 2,
-                      offset: const Offset(0, 0),
-                    )
+                      color: GetColor.getColor(widget.type!).withOpacity(0.8),
+                      blurRadius: 1,
+                      spreadRadius: 1,
+                    ),
                   ]
-                : null,
-            gradient: widget.gradient,
+                : [
+                    BoxShadow(
+                      color: AppColors.white.withOpacity(0.05),
+                      blurRadius: 0.8,
+                      spreadRadius: 0.8,
+                    ),
+                  ],
+            color: widget.color,
             borderRadius: BorderRadius.circular(widget.radius),
           ),
           child: Padding(

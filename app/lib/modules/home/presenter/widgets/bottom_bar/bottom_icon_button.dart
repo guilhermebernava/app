@@ -21,7 +21,8 @@ class BottomIconButton extends StatelessWidget {
         onTap: onTap,
         child: Icon(
           icon,
-          color: isSelected ? AppColors.primary : AppColors.bottomIconColor,
+          color:
+              isSelected ? AppColors.white : AppColors.white.withOpacity(0.3),
           size: 30,
         ),
       ),

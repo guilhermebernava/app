@@ -15,7 +15,7 @@ class CoreBackButton extends StatelessWidget {
       onTap: onTap,
       child: const Icon(
         Icons.arrow_back_ios_new_outlined,
-        color: AppColors.black,
+        color: AppColors.white,
         size: 30,
       ),
     );

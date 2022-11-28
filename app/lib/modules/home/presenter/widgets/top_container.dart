@@ -14,8 +14,7 @@ class TopContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ColoredContainer(
-      neonColor: AppColors.primary,
-      gradient: AppColors.primaryGradient,
+      color: AppColors.primary,
       height: size.height * 0.2,
       width: size.width,
       child: Column(

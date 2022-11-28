@@ -1,13 +1,10 @@
-import 'package:app/core/domain/enums/daily_task_type.dart';
+import 'package:app/core/presenters/widgets/core_loading.dart';
 import 'package:app/modules/home/domain/bloc/day_task_bloc/day_task_events.dart';
 import 'package:app/modules/home/domain/bloc/day_task_bloc/day_task_states.dart';
 import 'package:app/modules/home/domain/interfaces/i_bottom_bar_usecase.dart';
 import 'package:app/modules/home/domain/interfaces/i_home_use_case.dart';
-import 'package:app/modules/home/presenter/widgets/bottom_bar.dart';
-import 'package:app/modules/home/presenter/widgets/date_container_list.dart';
-import 'package:app/modules/home/presenter/widgets/home_container.dart';
-import 'package:app/modules/home/presenter/widgets/hour_list_container.dart';
-import 'package:app/themes/colors/app_colors.dart';
+import 'package:app/modules/home/presenter/widgets/bottom_bar/bottom_bar.dart';
+import 'package:app/modules/home/presenter/widgets/home_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,72 +30,18 @@ class HomePage extends StatelessWidget {
             bloc: homeUseCase.dayTaskBloc,
             builder: (_, bloc) {
               if (bloc is DayTaskLoading) {
-                const Center(
-                  child: CircularProgressIndicator(
-                    color: AppColors.primary,
-                    strokeWidth: 5,
-                  ),
-                );
+                return const CoreLoading();
               }
 
               if (bloc is DayTaskError) {
-                Text(bloc.message);
+                return Text(bloc.message);
               }
 
               if (bloc is DaysTasks) {
-                return SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                    ),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 20,
-                          ),
-                          child: GridView.count(
-                            crossAxisCount: 2,
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            children: [
-                              HomeContainer(
-                                size: size,
-                                title: bloc.data.todayDayTasks.tasks.length
-                                    .toString(),
-                                subtitle: "Total de Tarefas",
-                              ),
-                              HomeContainer(
-                                size: size,
-                                title: bloc.data.todayDayTasks.tasks
-                                    .where(
-                                      (element) =>
-                                          element.dailyTaskType ==
-                                          DailyTaskType.programing,
-                                    )
-                                    .length
-                                    .toString(),
-                                subtitle: "Total de Tarefas do Tipo Programar",
-                              ),
-                            ],
-                          ),
-                        ),
-                        DateContainerList(
-                          homeUseCase: homeUseCase,
-                          size: size,
-                          dates: bloc.data.daysTasks,
-                        ),
-                        HourListContainer(
-                          homeUseCase: homeUseCase,
-                          size: size,
-                        ),
-                        SizedBox(
-                          height: size.height * 0.2,
-                        ),
-                      ],
-                    ),
-                  ),
+                return HomeBody(
+                  data: bloc.data,
+                  homeUseCase: homeUseCase,
+                  size: size,
                 );
               }
               return Container();

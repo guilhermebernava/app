@@ -14,10 +14,10 @@ class DialogCloseButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 23),
+        padding: const EdgeInsets.only(bottom: 9),
         child: Container(
           decoration: const BoxDecoration(
-            gradient: AppColors.primaryGradient,
+            color: AppColors.primary,
             shape: BoxShape.circle,
           ),
           child: const Padding(

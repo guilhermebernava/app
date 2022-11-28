@@ -29,60 +29,45 @@ class CoreTextFormField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         vertical: 15,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              bottom: 10,
-              left: 15,
+      child: TextFormField(
+        initialValue: initialValue,
+        onChanged: onChanged,
+        inputFormatters: inputFormatters,
+        validator: validator,
+        style: AppFonts.textFormText,
+        decoration: InputDecoration(
+          hintText: hintText,
+          errorStyle: AppFonts.textFormError,
+          hintStyle: AppFonts.textFormHint,
+          border: OutlineInputBorder(
+            borderSide: const BorderSide(
+              width: 2.5,
+              color: AppColors.white,
             ),
-            child: Text(
-              label,
-              style: AppFonts.textFormTitle,
-            ),
+            borderRadius: BorderRadius.circular(20),
           ),
-          TextFormField(
-            initialValue: initialValue,
-            onChanged: onChanged,
-            inputFormatters: inputFormatters,
-            validator: validator,
-            style: AppFonts.textFormText,
-            decoration: InputDecoration(
-              hintText: hintText,
-              errorStyle: AppFonts.textFormError,
-              hintStyle: AppFonts.textFormHint,
-              border: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  width: 2.5,
-                  color: AppColors.black,
-                ),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  width: 3,
-                  color: AppColors.primary,
-                ),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  width: 2,
-                  color: AppColors.black,
-                ),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              errorBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  width: 2,
-                  color: Colors.red,
-                ),
-                borderRadius: BorderRadius.circular(10),
-              ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              width: 3,
+              color: AppColors.primary,
             ),
+            borderRadius: BorderRadius.circular(20),
           ),
-        ],
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              width: 2,
+              color: AppColors.white,
+            ),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              width: 2,
+              color: Colors.red,
+            ),
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
       ),
     );
   }

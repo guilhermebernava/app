@@ -1,7 +1,7 @@
 import 'package:app/modules/home/domain/bloc/tasks/tasks_states.dart';
 import 'package:app/modules/home/domain/interfaces/i_home_use_case.dart';
-import 'package:app/modules/home/presenter/widgets/hour_container.dart';
-import 'package:app/modules/home/presenter/widgets/hour_list_container_loading.dart';
+import 'package:app/modules/home/presenter/widgets/hour/hour_container.dart';
+import 'package:app/modules/home/presenter/widgets/hour/hour_list_container_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -31,9 +31,12 @@ class HourListContainer extends StatelessWidget {
             scrollDirection: Axis.vertical,
             itemBuilder: (context, index) {
               return HourContainer(
+                isCompleted: index.isEven,
+                type: bloc.tasks[index].dailyTaskType,
                 index: index,
                 gradient: bloc.tasks[index].gradient,
                 color: bloc.tasks[index].neonColor,
+                dueDate: bloc.tasks[index].endDate,
                 size: size,
                 hour:
                     "${bloc.tasks[index].initialDate.hour}:${bloc.tasks[index].initialDate.minute}",

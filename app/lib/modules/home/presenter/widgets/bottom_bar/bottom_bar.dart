@@ -1,7 +1,7 @@
 import 'package:app/modules/home/domain/bloc/bottom_bar/bottom_bar_states.dart';
 import 'package:app/modules/home/domain/interfaces/i_bottom_bar_usecase.dart';
-import 'package:app/modules/home/presenter/widgets/bottom_bar_add_button.dart';
-import 'package:app/modules/home/presenter/widgets/bottom_icon_button.dart';
+import 'package:app/modules/home/presenter/widgets/bottom_bar/bottom_bar_add_button.dart';
+import 'package:app/modules/home/presenter/widgets/bottom_bar/bottom_icon_button.dart';
 import 'package:app/themes/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,17 +22,17 @@ class BottomBar extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         Align(
-          alignment: const Alignment(0, 0.92),
+          alignment: const Alignment(0, 0.94),
           child: Container(
             width: size.width * 0.9,
-            height: size.height * 0.1,
+            height: size.height * 0.08,
             decoration: BoxDecoration(
-              color: AppColors.lightBlack,
+              color: AppColors.black,
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.black.withOpacity(0.15),
-                  blurRadius: 20,
-                  spreadRadius: 20,
+                  color: AppColors.white.withOpacity(0.05),
+                  blurRadius: 0.8,
+                  spreadRadius: 0.8,
                 )
               ],
               borderRadius: BorderRadius.circular(20),
@@ -96,7 +96,7 @@ class BottomBar extends StatelessWidget {
           ),
         ),
         Align(
-          alignment: const Alignment(0, 0.925),
+          alignment: const Alignment(0, 0.97),
           child: BottomBarAddButton(
             params: bottomBarUsecase.dialogHomeDto,
           ),

@@ -1,6 +1,7 @@
 import 'package:app/core/presenters/widgets/core_back_button.dart';
 import 'package:app/core/presenters/widgets/core_text_form_field.dart';
 import 'package:app/modules/create_daily_task/domain/interfaces/i_create__daily_task_use_case.dart';
+import 'package:app/themes/colors/app_colors.dart';
 import 'package:app/themes/fonts/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -18,14 +19,14 @@ class CreatePage extends StatefulWidget {
 }
 
 class _CreatePageState extends State<CreatePage> {
-  DateTime? _firstDate;
-
+  //TODO implementar tela para salvar
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
+        backgroundColor: AppColors.black,
         leading: CoreBackButton(
           onTap: () => Modular.to.pop(),
         ),
@@ -50,9 +51,6 @@ class _CreatePageState extends State<CreatePage> {
                   if (date != null) {
                     widget.createDailyTaskUseCase.dailyTaskModel
                         .initialDate(date);
-                    setState(() {
-                      _firstDate = date;
-                    });
                   }
                 },
                 icon: const Icon(

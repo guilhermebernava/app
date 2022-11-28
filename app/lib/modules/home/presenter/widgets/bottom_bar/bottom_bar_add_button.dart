@@ -62,7 +62,7 @@ class _BottomBarAddButtonState extends State<BottomBarAddButton>
       },
       child: Container(
         decoration: const BoxDecoration(
-          gradient: AppColors.primaryGradient,
+          color: AppColors.primary,
           shape: BoxShape.circle,
         ),
         child: Padding(

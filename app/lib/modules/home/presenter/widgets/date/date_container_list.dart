@@ -1,20 +1,23 @@
 import 'package:app/modules/home/domain/bloc/tasks/tasks_events.dart';
 import 'package:app/modules/home/domain/dtos/date_container_list_dto.dart';
 import 'package:app/core/domain/entities/day_task.dart';
+import 'package:app/modules/home/domain/dtos/days_tasks.dart';
 import 'package:app/modules/home/domain/interfaces/i_home_use_case.dart';
-import 'package:app/modules/home/presenter/widgets/date_container.dart';
+import 'package:app/modules/home/presenter/widgets/date/date_container.dart';
 import 'package:flutter/material.dart';
 
 class DateContainerList extends StatefulWidget {
   final Size size;
   final List<DayTask> dates;
   final IHomeUseCase homeUseCase;
+  final DaysTasksDto data;
 
   const DateContainerList({
     super.key,
     required this.size,
     required this.dates,
     required this.homeUseCase,
+    required this.data,
   });
 
   @override
@@ -56,38 +59,41 @@ class _DateContainerListState extends State<DateContainerList> {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedOpacity(
-      opacity: params.animate ? 1 : 0,
-      duration: const Duration(milliseconds: 1300),
-      child: SizedBox(
-        height: widget.size.height * 0.2,
-        width: widget.size.width,
-        child: ListView.builder(
-          controller: _scrolController,
-          itemCount: widget.dates.length,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) {
-            if (widget.dates[index].dayNumber == DateTime.now().day) {
-              params.todayIndex = index;
-            }
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 30),
+      child: AnimatedOpacity(
+        opacity: params.animate ? 1 : 0,
+        duration: const Duration(milliseconds: 1300),
+        child: SizedBox(
+          height: widget.size.height * 0.2,
+          width: widget.size.width,
+          child: ListView.builder(
+            controller: _scrolController,
+            itemCount: widget.dates.length,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              if (widget.dates[index].dayNumber == DateTime.now().day) {
+                params.todayIndex = index;
+              }
 
-            return DateContainer(
-              index: index,
-              onTap: () {
-                widget.homeUseCase.taskBloc.add(
-                  GetTasks(dayNumber: widget.dates[index].dayNumber),
-                );
+              return DateContainer(
+                index: index,
+                onTap: () {
+                  widget.homeUseCase.taskBloc.add(
+                    GetTasks(dayNumber: widget.dates[index].dayNumber),
+                  );
 
-                setState(() {
-                  params.selectedIndex = index;
-                });
-              },
-              size: widget.size,
-              key: ValueKey(widget.dates[index].dayNumber),
-              dataDto: widget.dates[index],
-              isSelected: params.selectedIndex == index,
-            );
-          },
+                  setState(() {
+                    params.selectedIndex = index;
+                  });
+                },
+                size: widget.size,
+                key: ValueKey(widget.dates[index].dayNumber),
+                dataDto: widget.dates[index],
+                isSelected: params.selectedIndex == index,
+              );
+            },
+          ),
         ),
       ),
     );
