@@ -31,14 +31,13 @@ class DateContainer extends StatelessWidget {
         child: Container(
           width: size.width * 0.16,
           decoration: BoxDecoration(
-            gradient: isSelected
-                ? AppColors.darkOrangeGradient
-                : AppColors.whiteGradient,
+            color: isSelected ? AppColors.darkOrange : AppColors.lightBlack,
             borderRadius: BorderRadius.circular(25),
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
-                color: Color.fromARGB(40, 0, 0, 0),
-                blurRadius: 10,
+                color: AppColors.white.withOpacity(0.1),
+                blurRadius: 1,
+                spreadRadius: 1,
               )
             ],
           ),
@@ -47,14 +46,12 @@ class DateContainer extends StatelessWidget {
             children: [
               Text(
                 dataDto.dayNumber.toString(),
-                style: AppFonts.homeDataBold(
-                    isSelected ? AppColors.white : AppColors.black),
+                style: AppFonts.homeDataBold(AppColors.white),
                 textAlign: TextAlign.center,
               ),
               Text(
                 dataDto.day,
-                style: AppFonts.homeData(
-                    isSelected ? AppColors.white : AppColors.black),
+                style: AppFonts.homeData(AppColors.white),
                 textAlign: TextAlign.center,
               )
             ],

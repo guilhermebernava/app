@@ -61,7 +61,7 @@ class _ColoredContainerState extends State<ColoredContainer> {
             boxShadow: widget.neonColor != null
                 ? [
                     BoxShadow(
-                      color: widget.neonColor!.withOpacity(0.3),
+                      color: widget.neonColor!.withOpacity(0.05),
                       blurRadius: 45,
                       spreadRadius: 2,
                       offset: const Offset(0, 0),

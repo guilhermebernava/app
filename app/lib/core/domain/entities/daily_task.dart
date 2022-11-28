@@ -1,3 +1,4 @@
+import 'package:app/core/domain/enums/daily_task_type.dart';
 import 'package:flutter/material.dart';
 
 class DailyTask {
@@ -7,6 +8,7 @@ class DailyTask {
   final Gradient gradient;
   final String title;
   final num hoursInDay;
+  final DailyTaskType dailyTaskType;
 
   DailyTask({
     required this.endDate,
@@ -15,5 +17,6 @@ class DailyTask {
     required this.gradient,
     required this.neonColor,
     required this.hoursInDay,
+    required this.dailyTaskType,
   });
 }

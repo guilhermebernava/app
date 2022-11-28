@@ -5,7 +5,8 @@ class AppColors {
   static const lightPrimary = Color(0xffeae4ff);
   static const bottomBarColor = Color(0xffe9e3fe);
   static const bottomIconColor = Color(0xffbfb0f3);
-
+  static const lightBlack = Color(0xff1B1B1B);
+  static const backgroundColor = Color(0xff141415);
   static const purple = Color(0xff7e56f4);
   static const rose = Color(0xfff5628e);
   static const blue = Color(0xff33b6ff);
@@ -30,6 +31,12 @@ class AppColors {
 
   static const whiteGradient = RadialGradient(
     colors: [AppColors.white, AppColors.white],
+    center: Alignment.center,
+    radius: 1,
+  );
+
+  static const lightBlackGradient = RadialGradient(
+    colors: [AppColors.lightBlack, AppColors.backgroundColor],
     center: Alignment.center,
     radius: 1,
   );

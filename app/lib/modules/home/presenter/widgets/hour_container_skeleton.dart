@@ -42,7 +42,7 @@ class _HourContainerSkeletonState extends State<HourContainerSkeleton>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 0),
       child: AnimatedBuilder(
         animation: _animation,
         builder: (context, child) => Column(
@@ -50,7 +50,7 @@ class _HourContainerSkeletonState extends State<HourContainerSkeleton>
             Container(
               padding: const EdgeInsets.symmetric(
                 vertical: 10,
-                horizontal: 20,
+                horizontal: 0,
               ),
               width: widget.size.width,
               height: widget.size.height * 0.15,
@@ -78,7 +78,7 @@ class _HourContainerSkeletonState extends State<HourContainerSkeleton>
             ),
             const Divider(
               color: Color(0xffebebed),
-              thickness: 3,
+              thickness: 1.5,
             )
           ],
         ),

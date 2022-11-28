@@ -1,11 +1,11 @@
-import 'package:app/core/domain/entities/day_task.dart';
+import 'package:app/modules/home/domain/dtos/days_tasks.dart';
 
 abstract class DayTaskState {}
 
 class DaysTasks implements DayTaskState {
-  final List<DayTask> dayTasks;
+  final DaysTasksDto data;
 
-  DaysTasks({required this.dayTasks});
+  DaysTasks({required this.data});
 }
 
 class DayTaskError implements DayTaskState {

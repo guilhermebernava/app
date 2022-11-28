@@ -54,7 +54,9 @@ class _HourContainerState extends State<HourContainer> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+              padding: const EdgeInsets.symmetric(
+                vertical: 15,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -67,7 +69,7 @@ class _HourContainerState extends State<HourContainer> {
                     radius: 18,
                     gradient: widget.gradient,
                     height: widget.size.height * 0.11,
-                    width: widget.size.width * 0.8,
+                    width: widget.size.width * 0.76,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -90,7 +92,7 @@ class _HourContainerState extends State<HourContainer> {
             ),
             const Divider(
               color: Color(0xffebebed),
-              thickness: 3,
+              thickness: 1.5,
             )
           ],
         ),

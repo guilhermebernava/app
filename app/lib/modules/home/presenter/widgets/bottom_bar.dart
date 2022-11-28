@@ -27,7 +27,7 @@ class BottomBar extends StatelessWidget {
             width: size.width * 0.9,
             height: size.height * 0.1,
             decoration: BoxDecoration(
-              color: AppColors.lightGrey,
+              color: AppColors.lightBlack,
               boxShadow: [
                 BoxShadow(
                   color: AppColors.black.withOpacity(0.15),

@@ -24,7 +24,12 @@ class TasksBloc extends Bloc<TaskEvent, TaskState> {
         await Future.delayed(const Duration(seconds: 5));
         final dayTask = result.right().firstWhere(
               (element) => element.dayNumber == event.dayNumber,
-              orElse: () => DayTask(tasks: [], day: "invalid", dayNumber: 0),
+              orElse: () => DayTask(
+                types: [],
+                tasks: [],
+                day: "invalid",
+                dayNumber: 0,
+              ),
             );
 
         if (dayTask.dayNumber == 0) {

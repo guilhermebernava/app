@@ -19,7 +19,7 @@ class AppFonts {
 
   static final hourTitle = GoogleFonts.lato(
     fontSize: 16,
-    color: AppColors.black,
+    color: AppColors.white,
   );
 
   static final hourText = GoogleFonts.lato(
@@ -47,7 +47,7 @@ class AppFonts {
 
   static final textFormHint = GoogleFonts.lato(
     fontSize: 18,
-    color: AppColors.lightGrey,
+    color: AppColors.black.withOpacity(0.8),
   );
 
   static final textFormError = GoogleFonts.lato(

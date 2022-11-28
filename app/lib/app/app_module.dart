@@ -1,3 +1,4 @@
+import 'package:app/core/infra/services/app_show_date_picker.dart';
 import 'package:app/modules/create_daily_task/create_daily_task_module.dart';
 import 'package:app/modules/home/home_module.dart';
 import 'package:app/modules/splash/domain/use_cases/splash_use_case.dart';
@@ -6,7 +7,11 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 class AppModule extends Module {
   @override
-  List<Bind<Object>> get binds => [];
+  List<Bind<Object>> get binds => [
+        Bind(
+          (i) => AppShowDatePicker(),
+        )
+      ];
 
   @override
   List<ModularRoute> get routes => [

@@ -4,4 +4,5 @@ import 'package:dartz/dartz.dart';
 
 abstract class IDayTaskRepository {
   Future<Either<DayTaskException, List<DayTask>>> getDaysTasks();
+  Future<Either<DayTaskException, DayTask>> getTodayDayTasks();
 }
