@@ -1,18 +1,20 @@
 import 'package:app/core/domain/enums/daily_task_type.dart';
-import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 
-class DailyTask {
-  final Id dayTaskId;
+part 'daily_task_db.g.dart';
+
+@collection
+class DailyTaskDb {
+  Id id = Isar.autoIncrement;
   final DateTime initialDate;
   final DateTime endDate;
-  final Color neonColor;
+  final String neonColor;
   final String title;
-  final num hoursInDay;
+  final double hoursInDay;
+  @enumerated
   final DailyTaskType dailyTaskType;
 
-  DailyTask({
-    required this.dayTaskId,
+  DailyTaskDb({
     required this.endDate,
     required this.initialDate,
     required this.title,

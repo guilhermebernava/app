@@ -43,6 +43,7 @@ class DayTaskRepository implements IDayTaskRepository {
 
       dates.add(
         DayTask(
+          id: -1,
           types: [
             DailyTaskType.work,
             DailyTaskType.programing,
@@ -54,7 +55,6 @@ class DayTaskRepository implements IDayTaskRepository {
               endDate: date.add(Duration(hours: i + 2)),
               initialDate: date.add(Duration(hours: i)),
               title: "Programing",
-              gradient: AppColors.orangeGradient,
               neonColor: AppColors.orange,
               dailyTaskType: DailyTaskType.programing,
               hoursInDay: date
@@ -66,7 +66,6 @@ class DayTaskRepository implements IDayTaskRepository {
               endDate: date.add(Duration(hours: i + 7)),
               initialDate: date.add(Duration(hours: i + 2)),
               title: "Studying",
-              gradient: AppColors.roseGradient,
               neonColor: AppColors.rose,
               dailyTaskType: DailyTaskType.studying,
               hoursInDay: date
@@ -78,7 +77,6 @@ class DayTaskRepository implements IDayTaskRepository {
               endDate: date.add(Duration(hours: i + 6)),
               initialDate: date.add(Duration(hours: i + 3)),
               title: "Work",
-              gradient: AppColors.blueGradient,
               neonColor: AppColors.blue,
               dailyTaskType: DailyTaskType.work,
               hoursInDay: date
@@ -98,6 +96,7 @@ class DayTaskRepository implements IDayTaskRepository {
   Future<Either<DayTaskException, DayTask>> getTodayDayTasks() async {
     final date = DateTime.now();
     final todayDayTask = DayTask(
+      id: -1,
       types: [
         DailyTaskType.work,
         DailyTaskType.programing,
@@ -109,7 +108,6 @@ class DayTaskRepository implements IDayTaskRepository {
           endDate: date.add(const Duration(hours: 2)),
           initialDate: date.add(const Duration(hours: 0)),
           title: "Programar",
-          gradient: AppColors.orangeGradient,
           neonColor: AppColors.orange,
           dailyTaskType: DailyTaskType.programing,
           hoursInDay: date
@@ -122,7 +120,6 @@ class DayTaskRepository implements IDayTaskRepository {
           initialDate: date.add(const Duration(hours: 5)),
           title: "Ler",
           dailyTaskType: DailyTaskType.programing,
-          gradient: AppColors.roseGradient,
           neonColor: AppColors.rose,
           hoursInDay: date
               .add(const Duration(hours: 9))
@@ -134,7 +131,6 @@ class DayTaskRepository implements IDayTaskRepository {
           initialDate: date.add(const Duration(hours: 5)),
           title: "Ler",
           dailyTaskType: DailyTaskType.work,
-          gradient: AppColors.roseGradient,
           neonColor: AppColors.rose,
           hoursInDay: date
               .add(const Duration(hours: 9))

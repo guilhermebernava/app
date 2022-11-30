@@ -16,7 +16,7 @@ void main() {
   setUp(() {
     when(() => mockRepository.getDaysTasks()).thenAnswer(
       (invocation) async => Right([
-        DayTask(tasks: [], day: "Segunda", dayNumber: 1, types: []),
+        DayTask(id: -1, tasks: [], day: "Segunda", dayNumber: 1, types: []),
       ]),
     );
   });

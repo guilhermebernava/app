@@ -34,7 +34,6 @@ class HourListContainer extends StatelessWidget {
                 isCompleted: index.isEven,
                 type: bloc.tasks[index].dailyTaskType,
                 index: index,
-                gradient: bloc.tasks[index].gradient,
                 color: bloc.tasks[index].neonColor,
                 dueDate: bloc.tasks[index].endDate,
                 size: size,

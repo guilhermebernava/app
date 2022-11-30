@@ -25,6 +25,7 @@ class TasksBloc extends Bloc<TaskEvent, TaskState> {
         final dayTask = result.right().firstWhere(
               (element) => element.dayNumber == event.dayNumber,
               orElse: () => DayTask(
+                id: -1,
                 types: [],
                 tasks: [],
                 day: "invalid",

@@ -11,7 +11,6 @@ class HourContainer extends StatefulWidget {
   final DailyTaskType type;
   final String duration;
   final Color color;
-  final Gradient gradient;
   final int index;
   final DateTime dueDate;
   final bool isCompleted;
@@ -24,7 +23,6 @@ class HourContainer extends StatefulWidget {
     required this.title,
     required this.duration,
     required this.color,
-    required this.gradient,
     required this.index,
     required this.dueDate,
     required this.type,
@@ -62,7 +60,6 @@ class _HourContainerState extends State<HourContainer> {
         child: HourContainerColumn(
           type: widget.type,
           color: widget.color,
-          gradient: widget.gradient,
           size: widget.size,
           children: [
             HourContainerTop(

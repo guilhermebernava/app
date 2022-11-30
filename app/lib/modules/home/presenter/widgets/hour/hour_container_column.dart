@@ -7,14 +7,12 @@ class HourContainerColumn extends StatelessWidget {
   final Color color;
   final Size size;
   final List<Widget> children;
-  final Gradient gradient;
   final DailyTaskType type;
 
   const HourContainerColumn({
     super.key,
     required this.children,
     required this.color,
-    required this.gradient,
     required this.size,
     required this.type,
   });
