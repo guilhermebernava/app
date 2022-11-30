@@ -1,8 +1,8 @@
+import 'package:app/core/domain/entities/day_task/day_task.dart';
+import 'package:app/core/domain/interfaces/repositories/i_day_task_repository.dart';
 import 'package:app/core/extensions/dartz_extensions.dart';
 import 'package:app/modules/home/domain/bloc/tasks/tasks_events.dart';
 import 'package:app/modules/home/domain/bloc/tasks/tasks_states.dart';
-import 'package:app/core/domain/entities/day_task.dart';
-import 'package:app/modules/home/domain/interfaces/repositories/i_day_task_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TasksBloc extends Bloc<TaskEvent, TaskState> {
@@ -15,7 +15,7 @@ class TasksBloc extends Bloc<TaskEvent, TaskState> {
       ((event, emit) async {
         emit(TasksLoading());
 
-        final result = await dayTaskRepository.getDaysTasks();
+        final result = await dayTaskRepository.getAll();
 
         if (result.isLeft()) {
           emit(TaskError(message: "Error in getting days"));
@@ -25,9 +25,6 @@ class TasksBloc extends Bloc<TaskEvent, TaskState> {
         final dayTask = result.right().firstWhere(
               (element) => element.dayNumber == event.dayNumber,
               orElse: () => DayTask(
-                id: -1,
-                types: [],
-                tasks: [],
                 day: "invalid",
                 dayNumber: 0,
               ),
@@ -38,7 +35,7 @@ class TasksBloc extends Bloc<TaskEvent, TaskState> {
           return;
         }
 
-        emit(TaskSuccess(tasks: dayTask.tasks));
+        emit(TaskSuccess(tasks: dayTask.tasks.toList()));
       }),
     );
   }

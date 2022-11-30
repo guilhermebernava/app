@@ -22,7 +22,7 @@ class GridHomeContainer extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         final itens = data.todayDayTasks.tasks.where(
-          (element) => element.dailyTaskType == data.todayDayTasks.types[index],
+          (element) => element.type == data.todayDayTasks.types.toList()[index],
         );
         return HomeContainer(
           dailyTaskType: itens.first.dailyTaskType,

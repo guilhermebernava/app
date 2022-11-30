@@ -1,3 +1,4 @@
+import 'package:app/core/infra/repositories/day_task/day_task_repository.dart';
 import 'package:app/modules/create_daily_task/create_daily_task_module.dart';
 import 'package:app/modules/home/domain/bloc/bottom_bar/bottom_bar_bloc.dart';
 import 'package:app/modules/home/domain/bloc/day_task_bloc/day_task_bloc.dart';
@@ -5,7 +6,6 @@ import 'package:app/modules/home/domain/bloc/tasks/tasks_bloc.dart';
 import 'package:app/modules/home/domain/dtos/dialog_home_dto.dart';
 import 'package:app/modules/home/domain/use_cases/bottom_bar_usecase.dart';
 import 'package:app/modules/home/domain/use_cases/home_use_case.dart';
-import 'package:app/modules/home/infra/repositories/date_repository.dart';
 import 'package:app/modules/home/presenter/home_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -14,9 +14,6 @@ class HomeModule extends Module {
 
   @override
   List<Bind<Object>> get binds => [
-        Bind(
-          (_) => DayTaskRepository(),
-        ),
         Bind((_) => BottomBarBloc()),
         Bind(
           (i) => TasksBloc(

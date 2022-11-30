@@ -1,35 +1,36 @@
-import 'package:app/core/domain/database_entities/daily_task_db/daily_task_db.dart';
-import 'package:app/core/domain/database_entities/day_task_db/day_task_db.dart';
-import 'package:app/core/domain/entities/day_task.dart';
-import 'package:app/core/domain/interfaces/mapper/i_mapper.dart';
+import 'package:app/core/domain/entities/daily_task/daily_task.dart';
+import 'package:app/core/domain/entities/daily_task_type/daily_task_type.dart';
+import 'package:app/core/domain/entities/day_task/day_task.dart';
+import 'package:app/core/domain/interfaces/repositories/i_daily_task_type_respository.dart';
+import 'package:app/core/domain/interfaces/repositories/i_daily_task_repository.dart';
 import 'package:app/core/domain/interfaces/repositories/i_day_task_repository.dart';
+import 'package:app/core/domain/models/daily_task_db.dart';
 import 'package:app/core/exceptions/db_exception.dart';
+import 'package:app/core/extensions/dartz_extensions.dart';
 import 'package:dartz/dartz.dart';
 import 'package:isar/isar.dart';
 
 class DayTaskRepository implements IDayTaskRepository {
   @override
-  final IMapper<DayTask, DayTaskDb> mapper;
+  IDailyTaskRepository dailyTaskRepository;
+  @override
+  IDailyTaskTypeRepository dailyTaskTypeRepository;
 
   DayTaskRepository({
-    required this.mapper,
+    required this.dailyTaskRepository,
+    required this.dailyTaskTypeRepository,
   });
 
   @override
   Future<Either<DbException, List<DayTask>>> getAll() async {
     try {
       final db = await openDatabase();
-      final collection = db.dayTaskDbs;
+      final collection = db.dayTasks;
       final data = await collection.where().findAll();
 
-      if (data.isEmpty) {
-        return const Right([]);
-      }
-
-      final dayTasks = <DayTask>[];
-      for (var item in data) {
-        final dayTask = mapper.fromEntity(item);
-        dayTasks.add(dayTask);
+      for (var element in data) {
+        element.tasks.loadSync();
+        element.types.loadSync();
       }
 
       final isClosed = await closeDatabase(db);
@@ -43,7 +44,7 @@ class DayTaskRepository implements IDayTaskRepository {
         );
       }
 
-      return Right(dayTasks);
+      return Right(data);
     } catch (e) {
       return Left(
         DbException(
@@ -56,18 +57,71 @@ class DayTaskRepository implements IDayTaskRepository {
 
   @override
   Future<Either<DbException, void>> insert(
-      DayTaskDb entity, List<DailyTaskDb> tasks) async {
+      DayTask entity, List<DailyTaskDb> tasksModels) async {
     try {
-      final db = await openDatabase();
-      final collection = db.dayTaskDbs;
+      final types = <DailyTaskType>[];
+      final tasks = <DailyTask>[];
+
+      for (var taskModel in tasksModels) {
+        final existType =
+            await dailyTaskTypeRepository.getByName(taskModel.type);
+
+        if (existType.isLeft()) {
+          return Left(
+            DbException(
+              error: "could not find daily_task_type",
+              repository: "DayTaskRepository",
+            ),
+          );
+        }
+
+        final exist =
+            types.any((element) => element.type == existType.right().type);
+
+        if (!exist) {
+          types.add(existType.right());
+        }
+
+        final task = DailyTask(
+          endDate: taskModel.endDate,
+          initialDate: taskModel.initialDate,
+          title: taskModel.title,
+          neonColor: taskModel.neonColor,
+          hoursInDay: taskModel.hoursInDay,
+        );
+
+        final isSaved = await dailyTaskRepository.insert(
+          task,
+          existType.right(),
+        );
+
+        if (isSaved.isLeft()) {
+          return Left(
+            DbException(
+              error: "could not save daily_task",
+              repository: "DayTaskRepository",
+            ),
+          );
+        }
+
+        tasks.add(task);
+      }
 
       entity.tasks.addAll(tasks);
+      entity.types.addAll(types);
+
+      final db = await openDatabase();
+      final collection = db.dayTasks;
 
       int isSaved = await db.writeTxn(() async {
-        return await collection.put(entity);
+        final id = await collection.put(entity);
+        await entity.tasks.save();
+        await entity.types.save();
+        return id;
       });
 
-      await db.writeTxn(() => entity.tasks.save());
+      entity.tasks;
+      entity.types;
 
       final isClosed = await closeDatabase(db);
 
@@ -96,7 +150,11 @@ class DayTaskRepository implements IDayTaskRepository {
 
   @override
   Future<Isar> openDatabase() async {
-    final database = await Isar.open([DayTaskDbSchema, DailyTaskDbSchema]);
+    final database = await Isar.open([
+      DayTaskSchema,
+      DailyTaskSchema,
+      DailyTaskTypeSchema,
+    ]);
     return database;
   }
 }

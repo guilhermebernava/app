@@ -1,10 +1,10 @@
+import 'package:app/core/domain/entities/day_task/day_task.dart';
+import 'package:app/core/domain/interfaces/repositories/i_day_task_repository.dart';
+import 'package:app/core/exceptions/db_exception.dart';
 import 'package:app/modules/home/domain/bloc/day_task_bloc/day_task_bloc.dart';
 import 'package:app/modules/home/domain/bloc/day_task_bloc/day_task_events.dart';
 import 'package:app/modules/home/domain/bloc/day_task_bloc/day_task_states.dart';
 import 'package:app/modules/home/domain/bloc/tasks/tasks_bloc.dart';
-import 'package:app/core/domain/entities/day_task.dart';
-import 'package:app/modules/home/domain/errors/day_task_exception.dart';
-import 'package:app/modules/home/domain/interfaces/repositories/i_day_task_repository.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -16,9 +16,9 @@ void main() {
   final mockRepository = MockRepository();
 
   setUp(() {
-    when(() => mockRepository.getDaysTasks()).thenAnswer(
+    when(() => mockRepository.getAll()).thenAnswer(
       (invocation) async => Right([
-        DayTask(id: -1, tasks: [], day: "Segunda", dayNumber: 1, types: []),
+        DayTask(day: "Segunda", dayNumber: 1),
       ]),
     );
   });
@@ -46,9 +46,9 @@ void main() {
     ),
     act: (bloc) {
       reset(mockRepository);
-      when(() => mockRepository.getDaysTasks()).thenAnswer(
+      when(() => mockRepository.getAll()).thenAnswer(
         (invocation) async =>
-            Left(DayTaskException(exception: "message", message: "Message")),
+            Left(DbException(error: "message", repository: "Message")),
       );
       bloc.add(GetDaysTasks());
     },

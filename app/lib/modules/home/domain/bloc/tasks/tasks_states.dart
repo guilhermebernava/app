@@ -1,4 +1,4 @@
-import 'package:app/core/domain/entities/daily_task.dart';
+import 'package:app/core/domain/entities/daily_task/daily_task.dart';
 
 abstract class TaskState {}
 

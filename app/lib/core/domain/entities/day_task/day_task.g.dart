@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'day_task_db.dart';
+part of 'day_task.dart';
 
 // **************************************************************************
 // IsarCollectionGenerator
@@ -9,13 +9,13 @@ part of 'day_task_db.dart';
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters
 
-extension GetDayTaskDbCollection on Isar {
-  IsarCollection<DayTaskDb> get dayTaskDbs => this.collection();
+extension GetDayTaskCollection on Isar {
+  IsarCollection<DayTask> get dayTasks => this.collection();
 }
 
-const DayTaskDbSchema = CollectionSchema(
-  name: r'DayTaskDb',
-  id: -1164505745627189683,
+const DayTaskSchema = CollectionSchema(
+  name: r'DayTask',
+  id: 5135669765479385792,
   properties: {
     r'day': PropertySchema(
       id: 0,
@@ -28,29 +28,35 @@ const DayTaskDbSchema = CollectionSchema(
       type: IsarType.long,
     )
   },
-  estimateSize: _dayTaskDbEstimateSize,
-  serialize: _dayTaskDbSerialize,
-  deserialize: _dayTaskDbDeserialize,
-  deserializeProp: _dayTaskDbDeserializeProp,
+  estimateSize: _dayTaskEstimateSize,
+  serialize: _dayTaskSerialize,
+  deserialize: _dayTaskDeserialize,
+  deserializeProp: _dayTaskDeserializeProp,
   idName: r'id',
   indexes: {},
   links: {
     r'tasks': LinkSchema(
-      id: 727100410398858604,
+      id: 8482460171852127170,
       name: r'tasks',
-      target: r'DailyTaskDb',
+      target: r'DailyTask',
+      single: false,
+    ),
+    r'types': LinkSchema(
+      id: 8132975231855355383,
+      name: r'types',
+      target: r'DailyTaskType',
       single: false,
     )
   },
   embeddedSchemas: {},
-  getId: _dayTaskDbGetId,
-  getLinks: _dayTaskDbGetLinks,
-  attach: _dayTaskDbAttach,
+  getId: _dayTaskGetId,
+  getLinks: _dayTaskGetLinks,
+  attach: _dayTaskAttach,
   version: '3.0.5',
 );
 
-int _dayTaskDbEstimateSize(
-  DayTaskDb object,
+int _dayTaskEstimateSize(
+  DayTask object,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
@@ -59,8 +65,8 @@ int _dayTaskDbEstimateSize(
   return bytesCount;
 }
 
-void _dayTaskDbSerialize(
-  DayTaskDb object,
+void _dayTaskSerialize(
+  DayTask object,
   IsarWriter writer,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
@@ -69,13 +75,13 @@ void _dayTaskDbSerialize(
   writer.writeLong(offsets[1], object.dayNumber);
 }
 
-DayTaskDb _dayTaskDbDeserialize(
+DayTask _dayTaskDeserialize(
   Id id,
   IsarReader reader,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = DayTaskDb(
+  final object = DayTask(
     day: reader.readString(offsets[0]),
     dayNumber: reader.readLong(offsets[1]),
   );
@@ -83,7 +89,7 @@ DayTaskDb _dayTaskDbDeserialize(
   return object;
 }
 
-P _dayTaskDbDeserializeProp<P>(
+P _dayTaskDeserializeProp<P>(
   IsarReader reader,
   int propertyId,
   int offset,
@@ -99,31 +105,30 @@ P _dayTaskDbDeserializeProp<P>(
   }
 }
 
-Id _dayTaskDbGetId(DayTaskDb object) {
+Id _dayTaskGetId(DayTask object) {
   return object.id;
 }
 
-List<IsarLinkBase<dynamic>> _dayTaskDbGetLinks(DayTaskDb object) {
-  return [object.tasks];
+List<IsarLinkBase<dynamic>> _dayTaskGetLinks(DayTask object) {
+  return [object.tasks, object.types];
 }
 
-void _dayTaskDbAttach(IsarCollection<dynamic> col, Id id, DayTaskDb object) {
+void _dayTaskAttach(IsarCollection<dynamic> col, Id id, DayTask object) {
   object.id = id;
-  object.tasks.attach(col, col.isar.collection<DailyTaskDb>(), r'tasks', id);
+  object.tasks.attach(col, col.isar.collection<DailyTask>(), r'tasks', id);
+  object.types.attach(col, col.isar.collection<DailyTaskType>(), r'types', id);
 }
 
-extension DayTaskDbQueryWhereSort
-    on QueryBuilder<DayTaskDb, DayTaskDb, QWhere> {
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterWhere> anyId() {
+extension DayTaskQueryWhereSort on QueryBuilder<DayTask, DayTask, QWhere> {
+  QueryBuilder<DayTask, DayTask, QAfterWhere> anyId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
     });
   }
 }
 
-extension DayTaskDbQueryWhere
-    on QueryBuilder<DayTaskDb, DayTaskDb, QWhereClause> {
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterWhereClause> idEqualTo(Id id) {
+extension DayTaskQueryWhere on QueryBuilder<DayTask, DayTask, QWhereClause> {
+  QueryBuilder<DayTask, DayTask, QAfterWhereClause> idEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
         lower: id,
@@ -132,7 +137,7 @@ extension DayTaskDbQueryWhere
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterWhereClause> idNotEqualTo(Id id) {
+  QueryBuilder<DayTask, DayTask, QAfterWhereClause> idNotEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -154,7 +159,7 @@ extension DayTaskDbQueryWhere
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterWhereClause> idGreaterThan(Id id,
+  QueryBuilder<DayTask, DayTask, QAfterWhereClause> idGreaterThan(Id id,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -163,7 +168,7 @@ extension DayTaskDbQueryWhere
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterWhereClause> idLessThan(Id id,
+  QueryBuilder<DayTask, DayTask, QAfterWhereClause> idLessThan(Id id,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -172,7 +177,7 @@ extension DayTaskDbQueryWhere
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterWhereClause> idBetween(
+  QueryBuilder<DayTask, DayTask, QAfterWhereClause> idBetween(
     Id lowerId,
     Id upperId, {
     bool includeLower = true,
@@ -189,9 +194,9 @@ extension DayTaskDbQueryWhere
   }
 }
 
-extension DayTaskDbQueryFilter
-    on QueryBuilder<DayTaskDb, DayTaskDb, QFilterCondition> {
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition> dayEqualTo(
+extension DayTaskQueryFilter
+    on QueryBuilder<DayTask, DayTask, QFilterCondition> {
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> dayEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -204,7 +209,7 @@ extension DayTaskDbQueryFilter
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition> dayGreaterThan(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> dayGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -219,7 +224,7 @@ extension DayTaskDbQueryFilter
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition> dayLessThan(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> dayLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -234,7 +239,7 @@ extension DayTaskDbQueryFilter
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition> dayBetween(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> dayBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -253,7 +258,7 @@ extension DayTaskDbQueryFilter
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition> dayStartsWith(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> dayStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -266,7 +271,7 @@ extension DayTaskDbQueryFilter
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition> dayEndsWith(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> dayEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -279,7 +284,7 @@ extension DayTaskDbQueryFilter
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition> dayContains(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> dayContains(
       String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -291,7 +296,7 @@ extension DayTaskDbQueryFilter
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition> dayMatches(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> dayMatches(
       String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -303,7 +308,7 @@ extension DayTaskDbQueryFilter
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition> dayIsEmpty() {
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> dayIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'day',
@@ -312,7 +317,7 @@ extension DayTaskDbQueryFilter
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition> dayIsNotEmpty() {
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> dayIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'day',
@@ -321,7 +326,7 @@ extension DayTaskDbQueryFilter
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition> dayNumberEqualTo(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> dayNumberEqualTo(
       int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -331,8 +336,7 @@ extension DayTaskDbQueryFilter
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition>
-      dayNumberGreaterThan(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> dayNumberGreaterThan(
     int value, {
     bool include = false,
   }) {
@@ -345,7 +349,7 @@ extension DayTaskDbQueryFilter
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition> dayNumberLessThan(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> dayNumberLessThan(
     int value, {
     bool include = false,
   }) {
@@ -358,7 +362,7 @@ extension DayTaskDbQueryFilter
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition> dayNumberBetween(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> dayNumberBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -375,8 +379,7 @@ extension DayTaskDbQueryFilter
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition> idEqualTo(
-      Id value) {
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> idEqualTo(Id value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'id',
@@ -385,7 +388,7 @@ extension DayTaskDbQueryFilter
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition> idGreaterThan(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> idGreaterThan(
     Id value, {
     bool include = false,
   }) {
@@ -398,7 +401,7 @@ extension DayTaskDbQueryFilter
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition> idLessThan(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> idLessThan(
     Id value, {
     bool include = false,
   }) {
@@ -411,7 +414,7 @@ extension DayTaskDbQueryFilter
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition> idBetween(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> idBetween(
     Id lower,
     Id upper, {
     bool includeLower = true,
@@ -429,38 +432,38 @@ extension DayTaskDbQueryFilter
   }
 }
 
-extension DayTaskDbQueryObject
-    on QueryBuilder<DayTaskDb, DayTaskDb, QFilterCondition> {}
+extension DayTaskQueryObject
+    on QueryBuilder<DayTask, DayTask, QFilterCondition> {}
 
-extension DayTaskDbQueryLinks
-    on QueryBuilder<DayTaskDb, DayTaskDb, QFilterCondition> {
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition> tasks(
-      FilterQuery<DailyTaskDb> q) {
+extension DayTaskQueryLinks
+    on QueryBuilder<DayTask, DayTask, QFilterCondition> {
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> tasks(
+      FilterQuery<DailyTask> q) {
     return QueryBuilder.apply(this, (query) {
       return query.link(q, r'tasks');
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition> tasksLengthEqualTo(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> tasksLengthEqualTo(
       int length) {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(r'tasks', length, true, length, true);
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition> tasksIsEmpty() {
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> tasksIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(r'tasks', 0, true, 0, true);
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition> tasksIsNotEmpty() {
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> tasksIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(r'tasks', 0, false, 999999, true);
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition> tasksLengthLessThan(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> tasksLengthLessThan(
     int length, {
     bool include = false,
   }) {
@@ -469,8 +472,7 @@ extension DayTaskDbQueryLinks
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition>
-      tasksLengthGreaterThan(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> tasksLengthGreaterThan(
     int length, {
     bool include = false,
   }) {
@@ -479,7 +481,7 @@ extension DayTaskDbQueryLinks
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterFilterCondition> tasksLengthBetween(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> tasksLengthBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -490,104 +492,160 @@ extension DayTaskDbQueryLinks
           r'tasks', lower, includeLower, upper, includeUpper);
     });
   }
+
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> types(
+      FilterQuery<DailyTaskType> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.link(q, r'types');
+    });
+  }
+
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> typesLengthEqualTo(
+      int length) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'types', length, true, length, true);
+    });
+  }
+
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> typesIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'types', 0, true, 0, true);
+    });
+  }
+
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> typesIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'types', 0, false, 999999, true);
+    });
+  }
+
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> typesLengthLessThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'types', 0, true, length, include);
+    });
+  }
+
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> typesLengthGreaterThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'types', length, include, 999999, true);
+    });
+  }
+
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> typesLengthBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(
+          r'types', lower, includeLower, upper, includeUpper);
+    });
+  }
 }
 
-extension DayTaskDbQuerySortBy on QueryBuilder<DayTaskDb, DayTaskDb, QSortBy> {
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterSortBy> sortByDay() {
+extension DayTaskQuerySortBy on QueryBuilder<DayTask, DayTask, QSortBy> {
+  QueryBuilder<DayTask, DayTask, QAfterSortBy> sortByDay() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'day', Sort.asc);
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterSortBy> sortByDayDesc() {
+  QueryBuilder<DayTask, DayTask, QAfterSortBy> sortByDayDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'day', Sort.desc);
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterSortBy> sortByDayNumber() {
+  QueryBuilder<DayTask, DayTask, QAfterSortBy> sortByDayNumber() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'dayNumber', Sort.asc);
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterSortBy> sortByDayNumberDesc() {
+  QueryBuilder<DayTask, DayTask, QAfterSortBy> sortByDayNumberDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'dayNumber', Sort.desc);
     });
   }
 }
 
-extension DayTaskDbQuerySortThenBy
-    on QueryBuilder<DayTaskDb, DayTaskDb, QSortThenBy> {
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterSortBy> thenByDay() {
+extension DayTaskQuerySortThenBy
+    on QueryBuilder<DayTask, DayTask, QSortThenBy> {
+  QueryBuilder<DayTask, DayTask, QAfterSortBy> thenByDay() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'day', Sort.asc);
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterSortBy> thenByDayDesc() {
+  QueryBuilder<DayTask, DayTask, QAfterSortBy> thenByDayDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'day', Sort.desc);
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterSortBy> thenByDayNumber() {
+  QueryBuilder<DayTask, DayTask, QAfterSortBy> thenByDayNumber() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'dayNumber', Sort.asc);
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterSortBy> thenByDayNumberDesc() {
+  QueryBuilder<DayTask, DayTask, QAfterSortBy> thenByDayNumberDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'dayNumber', Sort.desc);
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterSortBy> thenById() {
+  QueryBuilder<DayTask, DayTask, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QAfterSortBy> thenByIdDesc() {
+  QueryBuilder<DayTask, DayTask, QAfterSortBy> thenByIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.desc);
     });
   }
 }
 
-extension DayTaskDbQueryWhereDistinct
-    on QueryBuilder<DayTaskDb, DayTaskDb, QDistinct> {
-  QueryBuilder<DayTaskDb, DayTaskDb, QDistinct> distinctByDay(
+extension DayTaskQueryWhereDistinct
+    on QueryBuilder<DayTask, DayTask, QDistinct> {
+  QueryBuilder<DayTask, DayTask, QDistinct> distinctByDay(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'day', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<DayTaskDb, DayTaskDb, QDistinct> distinctByDayNumber() {
+  QueryBuilder<DayTask, DayTask, QDistinct> distinctByDayNumber() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'dayNumber');
     });
   }
 }
 
-extension DayTaskDbQueryProperty
-    on QueryBuilder<DayTaskDb, DayTaskDb, QQueryProperty> {
-  QueryBuilder<DayTaskDb, int, QQueryOperations> idProperty() {
+extension DayTaskQueryProperty
+    on QueryBuilder<DayTask, DayTask, QQueryProperty> {
+  QueryBuilder<DayTask, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
     });
   }
 
-  QueryBuilder<DayTaskDb, String, QQueryOperations> dayProperty() {
+  QueryBuilder<DayTask, String, QQueryOperations> dayProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'day');
     });
   }
 
-  QueryBuilder<DayTaskDb, int, QQueryOperations> dayNumberProperty() {
+  QueryBuilder<DayTask, int, QQueryOperations> dayNumberProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'dayNumber');
     });
