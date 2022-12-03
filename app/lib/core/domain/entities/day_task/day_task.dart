@@ -9,8 +9,8 @@ class DayTask {
   Id id = Isar.autoIncrement;
   final String day;
   final int dayNumber;
-  final IsarLinks<DailyTask> tasks = IsarLinks<DailyTask>();
-  final IsarLinks<DailyTaskType> types = IsarLinks<DailyTaskType>();
+  final IsarLinks<DailyTask> isarTasks = IsarLinks<DailyTask>();
+  final IsarLinks<DailyTaskType> isarTypes = IsarLinks<DailyTaskType>();
 
   DayTask({
     required this.day,

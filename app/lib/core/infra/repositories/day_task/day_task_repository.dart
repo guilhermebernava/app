@@ -22,26 +22,46 @@ class DayTaskRepository implements IDayTaskRepository {
   });
 
   @override
-  Future<Either<DbException, List<DayTask>>> getAll() async {
+  Future<Either<DbException, DayTask>> getTodayDayTask() async {
+    final db = await openDatabase();
     try {
-      final db = await openDatabase();
+      final collection = db.dayTasks;
+      final today = DateTime.now().day;
+      final data =
+          await collection.filter().dayNumberEqualTo(today).findFirst();
+
+      if (data == null) {
+        return Left(
+          DbException(
+            error: "could not find any DayTask",
+            repository: "DayTaskRepository",
+          ),
+        );
+      }
+      return Right(data);
+    } catch (e) {
+      return Left(
+        DbException(
+          error: e.toString(),
+          repository: "DayTaskRepository",
+        ),
+      );
+    } finally {
+      await closeDatabase(db);
+    }
+  }
+
+  @override
+  Future<Either<DbException, List<DayTask>>> getAll() async {
+    final db = await openDatabase();
+
+    try {
       final collection = db.dayTasks;
       final data = await collection.where().findAll();
 
       for (var element in data) {
-        element.tasks.loadSync();
-        element.types.loadSync();
-      }
-
-      final isClosed = await closeDatabase(db);
-
-      if (!isClosed) {
-        return Left(
-          DbException(
-            error: "could not close database",
-            repository: "DayTaskRepository",
-          ),
-        );
+        await element.isarTasks.load();
+        await element.isarTypes.load();
       }
 
       return Right(data);
@@ -52,12 +72,16 @@ class DayTaskRepository implements IDayTaskRepository {
           repository: "DayTaskRepository",
         ),
       );
+    } finally {
+      await closeDatabase(db);
     }
   }
 
   @override
   Future<Either<DbException, void>> insert(
-      DayTask entity, List<DailyTaskDb> tasksModels) async {
+    DayTask entity,
+    List<DailyTaskDb> tasksModels,
+  ) async {
     try {
       final types = <DailyTaskType>[];
       final tasks = <DailyTask>[];
@@ -107,25 +131,20 @@ class DayTaskRepository implements IDayTaskRepository {
         tasks.add(task);
       }
 
-      entity.tasks.addAll(tasks);
-      entity.types.addAll(types);
+      entity.isarTasks.addAll(tasks);
+      entity.isarTypes.addAll(types);
 
       final db = await openDatabase();
       final collection = db.dayTasks;
 
       int isSaved = await db.writeTxn(() async {
         final id = await collection.put(entity);
-        await entity.tasks.save();
-        await entity.types.save();
+        await entity.isarTasks.save();
+        await entity.isarTypes.save();
         return id;
       });
 
-      entity.tasks;
-      entity.types;
-
-      final isClosed = await closeDatabase(db);
-
-      if (isSaved == -1 || isClosed == false) {
+      if (isSaved == -1) {
         return Left(
           DbException(
             error: "could not insert data into database",

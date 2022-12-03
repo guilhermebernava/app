@@ -1,15 +1,14 @@
-import 'package:app/core/domain/enums/daily_task_type.dart';
 import 'package:app/themes/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class GetColor {
-  static Color getColor(DailyTaskType type) {
+  static Color getColor(String type) {
     switch (type) {
-      case DailyTaskType.programing:
+      case "programing":
         return AppColors.blue;
-      case DailyTaskType.studying:
+      case "studying":
         return AppColors.darkOrange;
-      case DailyTaskType.work:
+      case "work":
         return AppColors.rose;
       default:
         return AppColors.white;

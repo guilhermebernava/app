@@ -7,21 +7,11 @@ import 'package:app/core/exceptions/db_exception.dart';
 class DailyTaskTypeRepository implements IDailyTaskTypeRepository {
   @override
   Future<Either<DbException, List<DailyTaskType>>> getAll() async {
+    final db = await openDatabase();
+
     try {
-      final db = await openDatabase();
       final collection = db.dailyTaskTypes;
       final data = await collection.where().findAll();
-
-      final isClosed = await closeDatabase(db);
-
-      if (!isClosed) {
-        return Left(
-          DbException(
-            error: "could not close database",
-            repository: "DayTaskRepository",
-          ),
-        );
-      }
 
       return Right(data);
     } catch (e) {
@@ -31,26 +21,18 @@ class DailyTaskTypeRepository implements IDailyTaskTypeRepository {
           repository: "DayTaskRepository",
         ),
       );
+    } finally {
+      await closeDatabase(db);
     }
   }
 
   @override
   Future<Either<DbException, DailyTaskType>> getById(int id) async {
+    final db = await openDatabase();
+
     try {
-      final db = await openDatabase();
       final collection = db.dailyTaskTypes;
       final data = await collection.where().filter().idEqualTo(id).findFirst();
-
-      final isClosed = await closeDatabase(db);
-
-      if (!isClosed) {
-        return Left(
-          DbException(
-            error: "could not close database",
-            repository: "DayTaskRepository",
-          ),
-        );
-      }
 
       if (data == null) {
         return Left(
@@ -69,27 +51,18 @@ class DailyTaskTypeRepository implements IDailyTaskTypeRepository {
           repository: "DayTaskRepository",
         ),
       );
+    } finally {
+      await closeDatabase(db);
     }
   }
 
   @override
   Future<Either<DbException, DailyTaskType>> getByName(String name) async {
+    final db = await openDatabase();
     try {
-      final db = await openDatabase();
       final collection = db.dailyTaskTypes;
       final data =
           await collection.where().filter().typeEqualTo(name).findFirst();
-
-      final isClosed = await closeDatabase(db);
-
-      if (!isClosed) {
-        return Left(
-          DbException(
-            error: "could not close database",
-            repository: "DayTaskRepository",
-          ),
-        );
-      }
 
       if (data == null) {
         return Left(
@@ -108,6 +81,8 @@ class DailyTaskTypeRepository implements IDailyTaskTypeRepository {
           repository: "DayTaskRepository",
         ),
       );
+    } finally {
+      await closeDatabase(db);
     }
   }
 

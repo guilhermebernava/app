@@ -1,4 +1,3 @@
-import 'package:app/core/domain/enums/daily_task_type.dart';
 import 'package:app/modules/home/infra/services/get_color.dart';
 import 'package:app/themes/colors/app_colors.dart';
 import 'package:app/themes/fonts/app_fonts.dart';
@@ -8,7 +7,7 @@ class HomeContainer extends StatelessWidget {
   final Size size;
   final String title;
   final String subtitle;
-  final DailyTaskType dailyTaskType;
+  final String dailyTaskType;
 
   const HomeContainer({
     super.key,

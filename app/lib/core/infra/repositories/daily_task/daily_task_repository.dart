@@ -8,21 +8,11 @@ import 'package:app/core/exceptions/db_exception.dart';
 class DailyTaskRepository implements IDailyTaskRepository {
   @override
   Future<Either<DbException, List<DailyTask>>> getAll() async {
+    final db = await openDatabase();
+
     try {
-      final db = await openDatabase();
       final collection = db.dailyTasks;
       final data = await collection.where().findAll();
-
-      final isClosed = await closeDatabase(db);
-
-      if (!isClosed) {
-        return Left(
-          DbException(
-            error: "could not close database",
-            repository: "DailyTaskRepository",
-          ),
-        );
-      }
 
       return Right(data);
     } catch (e) {
@@ -32,6 +22,8 @@ class DailyTaskRepository implements IDailyTaskRepository {
           repository: "DailyTaskRepository",
         ),
       );
+    } finally {
+      await closeDatabase(db);
     }
   }
 

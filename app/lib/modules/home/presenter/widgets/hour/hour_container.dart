@@ -1,4 +1,3 @@
-import 'package:app/core/domain/enums/daily_task_type.dart';
 import 'package:app/modules/home/presenter/widgets/hour/hour_container_bottom.dart';
 import 'package:app/modules/home/presenter/widgets/hour/hour_container_column.dart';
 import 'package:app/modules/home/presenter/widgets/hour/hour_container_top.dart';
@@ -8,7 +7,7 @@ class HourContainer extends StatefulWidget {
   final Size size;
   final String hour;
   final String title;
-  final DailyTaskType type;
+  final String type;
   final String duration;
   final Color color;
   final int index;
@@ -66,7 +65,7 @@ class _HourContainerState extends State<HourContainer> {
               isCompleted: widget.isCompleted,
               size: widget.size,
               title: widget.title,
-              type: widget.type.name,
+              type: widget.type,
             ),
             SizedBox(
               height: widget.size.height * 0.06,

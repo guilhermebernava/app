@@ -1,4 +1,6 @@
+import 'package:app/core/domain/entities/day_task/day_task.dart';
 import 'package:app/core/domain/interfaces/repositories/i_day_task_repository.dart';
+import 'package:app/core/extensions/dartz_extensions.dart';
 import 'package:app/modules/home/domain/bloc/day_task_bloc/day_task_events.dart';
 import 'package:app/modules/home/domain/bloc/day_task_bloc/day_task_states.dart';
 import 'package:app/modules/home/domain/bloc/tasks/tasks_events.dart';
@@ -16,8 +18,12 @@ class DayTaskBloc extends Bloc<DayTaskEvent, DayTaskState> {
   }) : super(DayTaskLoading()) {
     on<GetDaysTasks>((event, emit) async {
       emit(DayTaskLoading());
-      //TODO implementar pegar TODAY DAY TASK
-      final todayDayTasks = await dayTaskRepository.getTodayDayTasks();
+      final today = DateTime.now();
+      await dayTaskRepository.insert(
+        DayTask(day: "teste", dayNumber: today.day),
+        [],
+      );
+      final todayDayTasks = await dayTaskRepository.getTodayDayTask();
       final daysTasks = await dayTaskRepository.getAll();
 
       if (todayDayTasks.isLeft() || daysTasks.isLeft()) {

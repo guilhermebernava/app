@@ -1,4 +1,3 @@
-import 'package:app/core/domain/enums/daily_task_type.dart';
 import 'package:app/modules/home/presenter/widgets/colored_container.dart';
 import 'package:app/themes/colors/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +6,7 @@ class HourContainerColumn extends StatelessWidget {
   final Color color;
   final Size size;
   final List<Widget> children;
-  final DailyTaskType type;
+  final String type;
 
   const HourContainerColumn({
     super.key,

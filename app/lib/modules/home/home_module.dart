@@ -22,8 +22,9 @@ class HomeModule extends Module {
         ),
         Bind(
           (i) => DayTaskBloc(
-              dayTaskRepository: i.get<DayTaskRepository>(),
-              tasksBloc: i.get<TasksBloc>()),
+            dayTaskRepository: i.get<DayTaskRepository>(),
+            tasksBloc: i.get<TasksBloc>(),
+          ),
         ),
       ];
 

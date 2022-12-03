@@ -1,4 +1,3 @@
-import 'package:app/core/domain/entities/daily_task/daily_task.dart';
 import 'package:app/core/domain/entities/day_task/day_task.dart';
 import 'package:app/core/domain/interfaces/repositories/i_daily_task_repository.dart';
 import 'package:app/core/domain/interfaces/repositories/i_daily_task_type_respository.dart';
@@ -19,4 +18,5 @@ abstract class IDayTaskRepository implements IRepository {
   Future<Either<DbException, List<DayTask>>> getAll();
   Future<Either<DbException, void>> insert(
       DayTask entity, List<DailyTaskDb> tasks);
+  Future<Either<DbException, DayTask>> getTodayDayTask();
 }

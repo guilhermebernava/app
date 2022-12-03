@@ -21,7 +21,7 @@ class HomeTitle extends StatelessWidget {
           padding: const EdgeInsets.only(top: 40, bottom: 5),
           child: Text(
             DateFormat("EEEE,  dd MMMM yyyy").format(
-              data.todayDayTasks.tasks.first.initialDate,
+              data.todayDayTasks.isarTasks.first.initialDate,
             ),
             style: AppFonts.basicBold,
           ),

@@ -1,4 +1,3 @@
-import 'package:app/core/domain/enums/daily_task_type.dart';
 import 'package:app/modules/home/infra/services/get_color.dart';
 import 'package:app/themes/colors/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +8,7 @@ class ColoredContainer extends StatefulWidget {
   final double width;
   final Color color;
   final double radius;
-  final DailyTaskType? type;
+  final String? type;
 
   const ColoredContainer({
     super.key,

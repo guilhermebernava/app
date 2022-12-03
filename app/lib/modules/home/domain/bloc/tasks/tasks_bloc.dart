@@ -35,7 +35,7 @@ class TasksBloc extends Bloc<TaskEvent, TaskState> {
           return;
         }
 
-        emit(TaskSuccess(tasks: dayTask.tasks.toList()));
+        emit(TaskSuccess(tasks: dayTask.isarTasks.toList()));
       }),
     );
   }

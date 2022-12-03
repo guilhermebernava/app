@@ -15,20 +15,22 @@ class GridHomeContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      itemCount: data.todayDayTasks.types.length,
+      itemCount: data.todayDayTasks.isarTypes.length,
       gridDelegate:
           const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
-        final itens = data.todayDayTasks.tasks.where(
-          (element) => element.type == data.todayDayTasks.types.toList()[index],
+        final list = data.todayDayTasks.isarTasks.toList();
+        final itens = list.where(
+          (element) => element.type == list[index].type,
         );
+        final item = itens.first;
         return HomeContainer(
-          dailyTaskType: itens.first.dailyTaskType,
+          dailyTaskType: item.type.value?.type ?? "",
           size: size,
           title: itens.length.toString(),
-          subtitle: "Total de Tarefas \n${itens.first.dailyTaskType.name}",
+          subtitle: "Total de Tarefas \n${item.type}",
         );
       },
     );

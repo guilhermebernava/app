@@ -35,15 +35,15 @@ const DayTaskSchema = CollectionSchema(
   idName: r'id',
   indexes: {},
   links: {
-    r'tasks': LinkSchema(
-      id: 8482460171852127170,
-      name: r'tasks',
+    r'isarTasks': LinkSchema(
+      id: -2400247536468003508,
+      name: r'isarTasks',
       target: r'DailyTask',
       single: false,
     ),
-    r'types': LinkSchema(
-      id: 8132975231855355383,
-      name: r'types',
+    r'isarTypes': LinkSchema(
+      id: 7822960879640391452,
+      name: r'isarTypes',
       target: r'DailyTaskType',
       single: false,
     )
@@ -110,13 +110,15 @@ Id _dayTaskGetId(DayTask object) {
 }
 
 List<IsarLinkBase<dynamic>> _dayTaskGetLinks(DayTask object) {
-  return [object.tasks, object.types];
+  return [object.isarTasks, object.isarTypes];
 }
 
 void _dayTaskAttach(IsarCollection<dynamic> col, Id id, DayTask object) {
   object.id = id;
-  object.tasks.attach(col, col.isar.collection<DailyTask>(), r'tasks', id);
-  object.types.attach(col, col.isar.collection<DailyTaskType>(), r'types', id);
+  object.isarTasks
+      .attach(col, col.isar.collection<DailyTask>(), r'isarTasks', id);
+  object.isarTypes
+      .attach(col, col.isar.collection<DailyTaskType>(), r'isarTypes', id);
 }
 
 extension DayTaskQueryWhereSort on QueryBuilder<DayTask, DayTask, QWhere> {
@@ -437,51 +439,52 @@ extension DayTaskQueryObject
 
 extension DayTaskQueryLinks
     on QueryBuilder<DayTask, DayTask, QFilterCondition> {
-  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> tasks(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> isarTasks(
       FilterQuery<DailyTask> q) {
     return QueryBuilder.apply(this, (query) {
-      return query.link(q, r'tasks');
+      return query.link(q, r'isarTasks');
     });
   }
 
-  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> tasksLengthEqualTo(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> isarTasksLengthEqualTo(
       int length) {
     return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'tasks', length, true, length, true);
+      return query.linkLength(r'isarTasks', length, true, length, true);
     });
   }
 
-  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> tasksIsEmpty() {
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> isarTasksIsEmpty() {
     return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'tasks', 0, true, 0, true);
+      return query.linkLength(r'isarTasks', 0, true, 0, true);
     });
   }
 
-  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> tasksIsNotEmpty() {
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> isarTasksIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'tasks', 0, false, 999999, true);
+      return query.linkLength(r'isarTasks', 0, false, 999999, true);
     });
   }
 
-  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> tasksLengthLessThan(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> isarTasksLengthLessThan(
     int length, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'tasks', 0, true, length, include);
+      return query.linkLength(r'isarTasks', 0, true, length, include);
     });
   }
 
-  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> tasksLengthGreaterThan(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition>
+      isarTasksLengthGreaterThan(
     int length, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'tasks', length, include, 999999, true);
+      return query.linkLength(r'isarTasks', length, include, 999999, true);
     });
   }
 
-  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> tasksLengthBetween(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> isarTasksLengthBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -489,55 +492,56 @@ extension DayTaskQueryLinks
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(
-          r'tasks', lower, includeLower, upper, includeUpper);
+          r'isarTasks', lower, includeLower, upper, includeUpper);
     });
   }
 
-  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> types(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> isarTypes(
       FilterQuery<DailyTaskType> q) {
     return QueryBuilder.apply(this, (query) {
-      return query.link(q, r'types');
+      return query.link(q, r'isarTypes');
     });
   }
 
-  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> typesLengthEqualTo(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> isarTypesLengthEqualTo(
       int length) {
     return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'types', length, true, length, true);
+      return query.linkLength(r'isarTypes', length, true, length, true);
     });
   }
 
-  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> typesIsEmpty() {
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> isarTypesIsEmpty() {
     return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'types', 0, true, 0, true);
+      return query.linkLength(r'isarTypes', 0, true, 0, true);
     });
   }
 
-  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> typesIsNotEmpty() {
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> isarTypesIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'types', 0, false, 999999, true);
+      return query.linkLength(r'isarTypes', 0, false, 999999, true);
     });
   }
 
-  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> typesLengthLessThan(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> isarTypesLengthLessThan(
     int length, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'types', 0, true, length, include);
+      return query.linkLength(r'isarTypes', 0, true, length, include);
     });
   }
 
-  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> typesLengthGreaterThan(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition>
+      isarTypesLengthGreaterThan(
     int length, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'types', length, include, 999999, true);
+      return query.linkLength(r'isarTypes', length, include, 999999, true);
     });
   }
 
-  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> typesLengthBetween(
+  QueryBuilder<DayTask, DayTask, QAfterFilterCondition> isarTypesLengthBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -545,7 +549,7 @@ extension DayTaskQueryLinks
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(
-          r'types', lower, includeLower, upper, includeUpper);
+          r'isarTypes', lower, includeLower, upper, includeUpper);
     });
   }
 }
